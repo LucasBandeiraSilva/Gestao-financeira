@@ -1,5 +1,7 @@
 package com.gestao.financeira.projeto.dto;
 
+import java.time.LocalDateTime;
+
 import org.hibernate.validator.constraints.br.CPF;
 
 import jakarta.validation.constraints.Email;
@@ -14,11 +16,13 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ClienteDto {
     @NotBlank(message = "O nome não deve ser nulo")
-    String nome;
+    private String nome;
     @NotBlank
     @Email(message = "Email invalido")
-    String email;
-    @NotBlank(message = "O Cpf não deve ser nulo")
+    private String email;
     @CPF(message = "CPF invalido")
-    String cpf;
+    private String cpf;
+    private String senha;
+    private LocalDateTime data_criacao;
+    private LocalDateTime data_atualizacao;
 }

@@ -22,30 +22,46 @@
           class="row bg-light rounded-3 d-flex align-items-center justify-content-center"
         >
           <div class="col-md-6">
-            <P class="h4 mt-3">Cadastre-se em nossa loja!</P> <br>
+            <p class="h4 mt-3">Cadastre-se em nossa loja!</p>
+            <br />
             <label for="nome" class="form-label">Nome:</label>
             <input
               type="text"
-              name="nome"
+              th:field="*{nome}"
               id="nome"
-              class="form-control mb-3 "
+              class="form-control mb-3"
+              th:errorclass="is-invalid"
             />
+            <div class="invalid-feedback" th:errors="*{nome}"></div>
             <label for="email" class="form-label">E-mail:</label>
             <input
               type="email"
-              name="email"
+              th:field="*{email}"
               id="email"
               class="form-control mb-3"
+              th:errorclass="is-invalid"
             />
+            <div class="invalid-feedback" th:errors="*{email}"></div>
             <label for="cpf" class="form-label">CPF:</label>
-            <input type="text" name="cpf" id="cpf" class="form-control mb-3" />
+            <input
+              type="text"
+              name="cpf"
+              th:field="*{cpf}"
+              id="cpf"
+              class="form-control mb-3"
+              th:errorclass="is-invalid"
+            />
+            <div class="invalid-feedback" th:errors="*{cpf}"></div>
             <label for="senha" class="form-label">Senha:</label>
             <input
               type="password"
               name="senha"
+              th:field="*{senha}"
               id="senha"
               class="form-control mb-3"
+              th:errorclass="is-invalid"
             />
+
             <label for="repetir-senha" class="form-label"
               >Repita a senha:</label
             >
@@ -57,8 +73,14 @@
             <div class="d-flex align-items-center justify-content-center mb-1">
               <button type="submit" class="btn btn-success">Entrar</button>
             </div>
+            <div class="text-danger-emphasis" th:if="${cpf}">
+                <p th:text="${cpf}"></p>
+            </div>
           </div>
         </form>
+        <!-- <div class="alert alert-danger" th:if="${erro}">
+            <p th:text="${erro}"></p>
+        </div> -->
       </div>
     </main>
   </body>
