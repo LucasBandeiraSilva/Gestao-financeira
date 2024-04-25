@@ -1,0 +1,20 @@
+body{
+    background-color: #ececec;
+}
+.container{
+    display: flex;
+    height: 100vh;
+    width: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.form-control{
+    background-color: #ececec;
+}
+
+form{
+    width: 30vw;
+}
+label{
+    text-align: center;
+}
