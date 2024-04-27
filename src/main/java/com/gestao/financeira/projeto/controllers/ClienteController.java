@@ -51,5 +51,10 @@ public class ClienteController {
             BindingResult result) {
         return clienteService.saveCliente(clienteDto, result);
     }
+    @PostMapping("/login")
+    public ModelAndView autenticacaoLogin(@RequestParam("email")String email, @RequestParam("senha") String senha){
+        return clienteService.autenticacaoLogin( email, senha);
+
+    }
 
 }

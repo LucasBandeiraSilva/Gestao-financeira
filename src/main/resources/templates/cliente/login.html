@@ -24,14 +24,41 @@
   </head>
   <body>
     <main class="container">
-      <form action="cliente/login" method="post" class="row border">
-        <div class="col">
-          <label for="nome" class="form-label">nome</label>
-          <input type="text" name="nome" id="nome" class="form-control mb-3" />
-          <label for="nome" class="form-label">Senha</label>
-          <input type="text" name="nome" id="nome" class="form-control mb-3" />
-          <div class="d-flex align-items-center justify-content-center">
-            <button type="submit" class="btn btn-success">Entrar</button>
+      <form action="/cliente/login" method="post" >
+        <div class="row  rounded rounded-5" >
+          <div class="col d-flex justify-content-center align-items-center flex-column rounded rounded-5" id="img-money">
+            <img
+              src="/imgs/money-bag.png"
+              alt="money"
+              srcset=""
+              width="150px"
+              height="150px"
+              class="mb-5"
+            />
+            <p class="h3 text-light">Faça seu login!</p>
+          </div>
+          
+          <div id="form" class="col d-flex justify-content-center align-items-center flex-column" >
+            <label for="email" class="form-label">email</label>
+            <input
+              type="text"
+              name="email"
+              id="email"
+              class="form-control mb-3 rounded rounded-3 "
+              placeholder="Digite o seu e-mail"
+            />
+            <label for="nome" class="form-label">Senha</label>
+            <input
+              type="password"
+              name="senha"
+              id="senha"
+              class="form-control mb-3 rounded rounded-3"
+              placeholder="Digite a senha"
+            />
+            <div class="d-flex align-items-center justify-content-center flex-column" id="option">
+              <button type="submit" class="btn mb-2">Entrar</button>
+              <p class="h4" id="link"><a target="_blank" th:href="@{/cliente/esqueci/senha}">Esqueceu a senha?</a></p>
+            </div>
           </div>
         </div>
       </form>

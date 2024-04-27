@@ -11,4 +11,6 @@ import java.util.List;
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     boolean existsByCpf(String cpf);
+    boolean  existsByEmail(String email); 
+    Cliente findByEmail(String email);
 }

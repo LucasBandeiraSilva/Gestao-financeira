@@ -39,13 +39,26 @@ public class ClienteService {
         }
         var cliente = new Cliente();
         String senhaCriptografada = encoder.encode(clienteDto.getSenha());
-        clienteDto.setSenha(senhaCriptografada);
         clienteDto.setData_criacao(LocalDateTime.now());
+        clienteDto.setSenha(senhaCriptografada);
         BeanUtils.copyProperties(clienteDto, cliente);
+        System.out.println(cliente.toString());
+        System.out.println("senha: " + cliente.getSenha());
         clienteRepository.save(cliente);
 
-        System.out.println(cliente);
         mv.setViewName("redirect:/cliente/login");
         return mv;
+    }
+
+    public ModelAndView autenticacaoLogin(String email,  String senha){
+        ModelAndView mv = new ModelAndView();
+        Cliente cliente = clienteRepository.findByEmail(email);
+        if (cliente != null && encoder.matches(senha, cliente.getSenha())) {
+            System.out.println("compativel");
+        }else{
+            System.out.println("não compativel");
+        }
+        return mv;
+
     }
 }

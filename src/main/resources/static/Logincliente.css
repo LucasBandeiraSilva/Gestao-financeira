@@ -4,6 +4,29 @@
     width: 100vh;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
     
 }
+#img-money{
+    background-color: #4edd65;
+}
+form,#img-money{
+    height: 50vh; /* Define a altura da área do formulário para ocupar toda a altura da tela */
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#form>.form-control {
+    background-color: #e8e8e8;
+  }
+  #option a {
+    text-decoration: none;
+  }
+  #option a:hover{
+    text-decoration: underline;
+  }
+    #option .btn{
+        background-color: #4edd65;
+        color:#fff;
+    }
+  

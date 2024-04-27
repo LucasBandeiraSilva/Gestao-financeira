@@ -98,4 +98,13 @@ public class Cliente {
             return false;
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha
+                + ", data_criacao=" + data_criacao + ", data_atualizacao=" + data_atualizacao + ", planejamento="
+                + planejamento + ", investimento=" + investimento + ", despesas=" + despesas + ", contaBancaria="
+                + contaBancaria + "]";
+    }
+    
 }
