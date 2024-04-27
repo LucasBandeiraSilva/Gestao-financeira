@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +21,7 @@ import lombok.Setter;
 @Table(name = "tb_cliente") // se quiser mudar o nome
 public class Cliente {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
@@ -28,6 +29,15 @@ public class Cliente {
     private String senha;
     private LocalDateTime data_criacao;
     private LocalDateTime data_atualizacao;
+    @ManyToOne
+    private Planejamento planejamento;
+    @ManyToOne
+    private Investimento investimento;
+    @ManyToOne
+    private Despesas despesas;
+    @ManyToOne
+    private ContaBancaria contaBancaria;
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -41,6 +51,7 @@ public class Cliente {
         result = prime * result + ((data_atualizacao == null) ? 0 : data_atualizacao.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -87,12 +98,4 @@ public class Cliente {
             return false;
         return true;
     }
-    @Override
-    public String toString() {
-        return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha
-                + ", data_criacao=" + data_criacao + ", data_atualizacao=" + data_atualizacao + "]";
-    }
-
-    
-
 }
