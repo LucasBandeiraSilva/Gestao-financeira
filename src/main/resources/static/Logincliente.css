@@ -9,8 +9,9 @@
 #img-money{
     background-color: #4edd65;
 }
-form,#img-money{
-    height: 50vh; /* Define a altura da área do formulário para ocupar toda a altura da tela */
+form{
+  border-radius: 5%;
+    height: 45vh; /* Define a altura da área do formulário para ocupar toda a altura da tela */
     width: 50vw;
     display: flex;
     justify-content: center;

@@ -1,0 +1,40 @@
+body {
+  background-color: #e8e8e8;
+}
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+#img-money {
+  background-color: #4edd65;
+  z-index: 1;
+}
+form,
+#img-money {
+  height: 55vh;
+  width: 55vw;
+}
+form {
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+#form > .form-control {
+  background-color: #e8e8e8;
+}
+#option a {
+  text-decoration: none;
+}
+#option a:hover {
+  text-decoration: underline;
+}
+#option .btn {
+  background-color: #4edd65;
+  color: #fff;
+}
