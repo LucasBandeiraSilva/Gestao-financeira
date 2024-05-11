@@ -24,22 +24,19 @@ public class ContaBancariaService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public ModelAndView salvarConta(HttpSession session, ContaBancariaDto contaBancariaDto,
-            BindingResult bindingResult) {
+    public ModelAndView salvarConta(HttpSession session, ContaBancariaDto contaBancariaDto) {
         Cliente cliente = (Cliente) session.getAttribute("usuario");
         ModelAndView mv = new ModelAndView();
-        if (cliente != null) {
-            if (bindingResult.hasErrors()) {
-                mv.setViewName("/banco/cadastro");
+        if (cliente == null) {
+                mv.setViewName("/cliente/cadastro");
                 return mv;
-            }
+            } 
             ContaBancaria contaBancaria = new ContaBancaria();
             BeanUtils.copyProperties(contaBancariaDto, contaBancaria);
             contaBancaria.setCliente(cliente);
             cliente.getContaBancaria().add(contaBancaria);
             clienteRepository.save(cliente);
             contaBancariaRepository.save(contaBancaria);
-        }
         mv.setViewName("redirect:/cliente/logado");
         return mv;
     }

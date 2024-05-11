@@ -1,7 +1,6 @@
 const form = document.getElementById("form");
 const campos = document.querySelectorAll(".required");
 const spans = document.querySelectorAll(".span-required");
-const senha = document.getElementById("senha");
 let isInvalidComparePassword = true;
 let isInvalidPassword = true;
 

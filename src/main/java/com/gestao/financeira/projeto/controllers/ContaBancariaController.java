@@ -34,7 +34,7 @@ public class ContaBancariaController {
         return mv;
     }
     @PostMapping("/cadastro")
-    public ModelAndView salvarConta(  HttpSession session, @Valid @ModelAttribute("contaBancaria") ContaBancariaDto contaBancariaDto, BindingResult bindingResult){
-        return contaBancariaService.salvarConta(session, contaBancariaDto,bindingResult);
+    public ModelAndView salvarConta(  HttpSession session,  ContaBancariaDto contaBancariaDto){
+        return contaBancariaService.salvarConta(session, contaBancariaDto);
     }
 }

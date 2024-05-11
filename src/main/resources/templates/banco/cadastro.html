@@ -67,6 +67,9 @@
               type="number"
               th:field="*{saldo}"
               id="saldo"
+              min="0"
+              max="10000000"
+              required
               class="form-control mb-3 rounded rounded-3"
               placeholder="Digite seu saldo"
               th:errorclass="is-invalid"

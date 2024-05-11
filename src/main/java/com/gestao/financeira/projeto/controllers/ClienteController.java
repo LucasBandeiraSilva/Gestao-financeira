@@ -51,10 +51,20 @@ public class ClienteController {
             BindingResult result) {
         return clienteService.saveCliente(clienteDto, result);
     }
+
     @PostMapping("/login")
-    public ModelAndView autenticacaoLogin(@RequestParam("email")String email, @RequestParam("senha") String senha){
-        return clienteService.autenticacaoLogin( email, senha);
+    public ModelAndView autenticacaoLogin(@RequestParam("email") String email, @RequestParam("senha") String senha,
+            RedirectAttributes attributes, HttpSession session) {
+        return clienteService.autenticacaoLogin(email, senha, attributes,session);
 
     }
+    @GetMapping("/logado")
+    public ModelAndView telaLogado(HttpSession session, Cliente cliente){
+        ModelAndView mv = new ModelAndView();
+        session.setAttribute("usuario", cliente);
+        mv.setViewName("cliente/tela-principal-logado");
+        return mv;
+    }
+    
 
 }
