@@ -1,12 +1,15 @@
 package com.gestao.financeira.projeto.entidades;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,14 +32,14 @@ public class Cliente {
     private String senha;
     private LocalDateTime data_criacao;
     private LocalDateTime data_atualizacao;
-    @ManyToOne
-    private Planejamento planejamento;
-    @ManyToOne
-    private Investimento investimento;
-    @ManyToOne
-    private Despesas despesas;
-    @ManyToOne
-    private ContaBancaria contaBancaria;
+    @OneToMany(mappedBy = "cliente")
+    private List<Planejamento> planejamentos = new ArrayList<>();
+    @OneToMany(mappedBy = "cliente")
+    private List<Investimento> investimento = new ArrayList<>();
+    @OneToMany(mappedBy = "cliente")
+    private List<Despesas> despesas = new ArrayList<>();
+    @OneToMany(mappedBy = "cliente")
+    private List<ContaBancaria> contaBancaria = new ArrayList<>();
 
     @Override
     public int hashCode() {
@@ -102,9 +105,11 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente [id=" + id + ", nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", senha=" + senha
-                + ", data_criacao=" + data_criacao + ", data_atualizacao=" + data_atualizacao + ", planejamento="
-                + planejamento + ", investimento=" + investimento + ", despesas=" + despesas + ", contaBancaria="
+                + ", data_criacao=" + data_criacao + ", data_atualizacao=" + data_atualizacao + ", planejamentos="
+                + planejamentos + ", investimento=" + investimento + ", despesas=" + despesas + ", contaBancaria="
                 + contaBancaria + "]";
     }
+
     
+
 }

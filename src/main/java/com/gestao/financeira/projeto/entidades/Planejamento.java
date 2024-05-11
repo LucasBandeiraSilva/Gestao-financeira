@@ -11,6 +11,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,6 +37,9 @@ public class Planejamento {
     private TipoMeta tipoMeta;
     private LocalDateTime data_inicio;
     private LocalDateTime data_termino;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
     @Override
     public int hashCode() {
@@ -47,6 +52,7 @@ public class Planejamento {
         result = prime * result + ((tipoMeta == null) ? 0 : tipoMeta.hashCode());
         result = prime * result + ((data_inicio == null) ? 0 : data_inicio.hashCode());
         result = prime * result + ((data_termino == null) ? 0 : data_termino.hashCode());
+        result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
         return result;
     }
 
@@ -91,7 +97,14 @@ public class Planejamento {
                 return false;
         } else if (!data_termino.equals(other.data_termino))
             return false;
+        if (cliente == null) {
+            if (other.cliente != null)
+                return false;
+        } else if (!cliente.equals(other.cliente))
+            return false;
         return true;
     }
+
+   
 
 }

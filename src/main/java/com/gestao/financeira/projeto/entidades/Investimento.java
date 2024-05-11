@@ -10,6 +10,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +32,9 @@ public class Investimento {
     private TipoInvestimento tipoInvestimento;
     private BigDecimal valorInicial;
     private BigDecimal data_retirada;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
     @Override
     public int hashCode() {
@@ -39,6 +44,7 @@ public class Investimento {
         result = prime * result + ((tipoInvestimento == null) ? 0 : tipoInvestimento.hashCode());
         result = prime * result + ((valorInicial == null) ? 0 : valorInicial.hashCode());
         result = prime * result + ((data_retirada == null) ? 0 : data_retirada.hashCode());
+        result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
         return result;
     }
 
@@ -67,6 +73,11 @@ public class Investimento {
             if (other.data_retirada != null)
                 return false;
         } else if (!data_retirada.equals(other.data_retirada))
+            return false;
+        if (cliente == null) {
+            if (other.cliente != null)
+                return false;
+        } else if (!cliente.equals(other.cliente))
             return false;
         return true;
     }

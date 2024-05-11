@@ -10,6 +10,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +31,9 @@ public class Despesas {
     @Enumerated(EnumType.STRING)
     private TipoDespesas TipoDespesas;
     private BigDecimal valorDespesa;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
     @Override
     public int hashCode() {
@@ -62,6 +67,12 @@ public class Despesas {
         } else if (!valorDespesa.equals(other.valorDespesa))
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Despesas [id=" + id + ", TipoDespesas=" + TipoDespesas + ", valorDespesa=" + valorDespesa + ", cliente="
+                + cliente + "]";
     }
 
 }

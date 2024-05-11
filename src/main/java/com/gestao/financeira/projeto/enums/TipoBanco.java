@@ -13,7 +13,8 @@ public enum TipoBanco {
     INTER("Inter"), 
     CAIXA("Caixa Econômica Federal"),
     NUBANK("Nubank"),
-    C6_BANK("C6 Bank");
+    C6_BANK("C6 Bank"),
+    BANCO_SAFRA("Banco Safra");
 
     private String nome;
 }
