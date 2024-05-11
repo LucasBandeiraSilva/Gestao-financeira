@@ -14,6 +14,8 @@ import com.gestao.financeira.projeto.dto.ClienteDto;
 import com.gestao.financeira.projeto.entidades.Cliente;
 import com.gestao.financeira.projeto.repositorios.ClienteRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class ClienteService {
 
@@ -42,22 +44,25 @@ public class ClienteService {
         clienteDto.setData_criacao(LocalDateTime.now());
         clienteDto.setSenha(senhaCriptografada);
         BeanUtils.copyProperties(clienteDto, cliente);
-        System.out.println(cliente.toString());
-        System.out.println("senha: " + cliente.getSenha());
         clienteRepository.save(cliente);
-
         mv.setViewName("redirect:/cliente/login");
         return mv;
     }
 
-    public ModelAndView autenticacaoLogin(String email,  String senha){
+    public ModelAndView autenticacaoLogin(String email, String senha, RedirectAttributes attributes,
+            HttpSession session) {
         ModelAndView mv = new ModelAndView();
         Cliente cliente = clienteRepository.findByEmail(email);
         if (cliente != null && encoder.matches(senha, cliente.getSenha())) {
+            attributes.addFlashAttribute("msg", "seja bem-vindo, " + cliente.getNome() + "!");
+            mv.setViewName("redirect:/cliente/logado");
+            session.setAttribute("usuario", cliente);
             System.out.println("compativel");
-        }else{
-            System.out.println("não compativel");
+        } else {
+            attributes.addFlashAttribute("erro", "e-mail e/ou senha incorreta! Tente novamente.");
+            mv.setViewName("redirect:/cliente/login");
         }
+
         return mv;
 
     }

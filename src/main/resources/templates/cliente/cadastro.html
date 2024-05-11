@@ -16,6 +16,7 @@
     <main class="border">
       <div class="container">
         <form
+          id="form"
           th:object="${clienteDto}"
           action="/cliente/cadastro"
           method="post"
@@ -58,23 +59,33 @@
               name="senha"
               th:field="*{senha}"
               id="senha"
-              class="form-control mb-3"
+              class="form-control mb-3 inputs required"
               th:errorclass="is-invalid"
+              oninput="passwordValidate()"
             />
+            <span class="span-required"
+              >A senha deve ter no minimo 6 caracteres</span
+            >
+            <label for="repetir_senha" class="form-label"> Repita a Senha:</label>
+            <input
+              type="password"
+              name="repetir_senha"
+              id="repetir_senha"
+              class="form-control mb-3 inputs required"
+              oninput="comparePassword()"
+            />
+            <span class="span-required">Senhas devem ser iguais!</span>
 
-            
             <div class="d-flex align-items-center justify-content-center mb-1">
               <button type="submit" class="btn btn-success">Entrar</button>
             </div>
             <div class="text-danger-emphasis" th:if="${cpf}">
-                <p th:text="${cpf}"></p>
+              <p th:text="${cpf}"></p>
             </div>
           </div>
         </form>
-        <!-- <div class="alert alert-danger" th:if="${erro}">
-            <p th:text="${erro}"></p>
-        </div> -->
       </div>
     </main>
+    <script src="/js/valida-senha-cliente.js"></script>
   </body>
 </html>

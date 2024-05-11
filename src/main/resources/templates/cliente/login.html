@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -31,20 +31,20 @@
               src="/imgs/money-bag.png"
               alt="money"
               srcset=""
-              width="150px"
-              height="150px"
+              width="250px"
+              height="250px"
               class="mb-5"
             />
             <p class="h3 text-light">Faça seu login!</p>
           </div>
           
-          <div id="form" class="col d-flex justify-content-center align-items-center flex-column" >
+          <div id="form" class="col d-flex justify-content-center align-items-center flex-column rounded rounded-3" >
             <label for="email" class="form-label">email</label>
             <input
               type="text"
               name="email"
               id="email"
-              class="form-control mb-3 rounded rounded-3 "
+              class="form-control mb-3 rounded rounded-3"
               placeholder="Digite o seu e-mail"
             />
             <label for="nome" class="form-label">Senha</label>
@@ -62,6 +62,9 @@
           </div>
         </div>
       </form>
+      <div class="alert alert-danger" th:if="${erro}">
+        <p th:text="${erro}"></p>
+      </div>
     </main>
   </body>
 </html>
