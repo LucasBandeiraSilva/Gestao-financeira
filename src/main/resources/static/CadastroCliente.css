@@ -19,6 +19,6 @@ label{
     text-align: center;
 }
 
-.span-required{
+.span-required,.valid{
     display: none;
 }

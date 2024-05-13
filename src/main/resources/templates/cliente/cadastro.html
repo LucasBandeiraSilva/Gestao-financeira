@@ -30,9 +30,14 @@
               type="text"
               th:field="*{nome}"
               id="nome"
-              class="form-control mb-3"
+              class="form-control mb-3 required"
+              oninput="nameValidation()"
               th:errorclass="is-invalid"
             />
+            <span class="span-required"
+              >O nome deve ser maior que 3 caracteres!</span
+            >
+            <span class="valid">O nome está no tamanho ideal!</span>
             <div class="invalid-feedback" th:errors="*{nome}"></div>
             <label for="email" class="form-label">E-mail:</label>
             <input
@@ -59,22 +64,27 @@
               name="senha"
               th:field="*{senha}"
               id="senha"
-              class="form-control mb-3 inputs required"
+              class="form-control mb-3 required"
               th:errorclass="is-invalid"
               oninput="passwordValidate()"
             />
             <span class="span-required"
               >A senha deve ter no minimo 6 caracteres</span
             >
-            <label for="repetir_senha" class="form-label"> Repita a Senha:</label>
+            <span class="valid">A senha está no tamanho ideal!</span>
+
+            <label for="repetir_senha" class="form-label">
+              Repita a Senha:</label
+            >
             <input
               type="password"
               name="repetir_senha"
               id="repetir_senha"
-              class="form-control mb-3 inputs required"
+              class="form-control mb-3 required"
               oninput="comparePassword()"
             />
             <span class="span-required">Senhas devem ser iguais!</span>
+            <span class="valid">As senhas estão iguais!</span>
 
             <div class="d-flex align-items-center justify-content-center mb-1">
               <button type="submit" class="btn btn-success">Entrar</button>
