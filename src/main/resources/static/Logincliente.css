@@ -11,7 +11,7 @@
 }
 form{
   border-radius: 5%;
-    height: 45vh; /* Define a altura da área do formulário para ocupar toda a altura da tela */
+    height: 45vh; 
     width: 50vw;
     display: flex;
     justify-content: center;

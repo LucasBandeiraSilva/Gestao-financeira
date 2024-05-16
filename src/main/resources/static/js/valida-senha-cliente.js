@@ -4,6 +4,7 @@ const spans = document.querySelectorAll(".span-required");
 const validFeedback = document.querySelectorAll(".valid");
 let isInvalidComparePassword = true;
 let isInvalidPassword = true;
+let isValidName = true;
 
 function setError(index) {
   campos[index].classList.add("is-invalid");
@@ -22,8 +23,10 @@ function removeError(index) {
 function nameValidation(){
   if(campos[0].value.length < 3){
     setError(0);
+    isValidName = false
   }else
   removeError(0);
+  isValidName = true
 }
 function passwordValidate() {
   if (campos[1].value.length < 6) {
@@ -45,10 +48,11 @@ function comparePassword() {
   }
 }
 form.addEventListener("submit", (event) => {
-  if (isInvalidComparePassword && !isInvalidPassword) {
+  if (isInvalidComparePassword && !isInvalidPassword && !isValidName) {
     console.log("formulario não enviado");
     console.log("senha boolean: " + isInvalidPassword);
     console.log("compareSenha boolean: " + isInvalidComparePassword);
+    console.log("nameValidation boolean: " + isValidName);
     event.preventDefault();
   } else {
     console.log("form sem erros de senha");

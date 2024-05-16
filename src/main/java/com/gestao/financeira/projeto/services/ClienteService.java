@@ -66,4 +66,28 @@ public class ClienteService {
         return mv;
 
     }
+
+    public ModelAndView recuperarSenha( String email, RedirectAttributes redirectAttributes,HttpSession session) {
+        ModelAndView mv = new ModelAndView();
+        Cliente cliente = clienteRepository.findByEmail(email);
+        if (cliente != null) {
+            mv.setViewName("cliente/redefinir-senha");
+            session.setAttribute("cliente", cliente);
+        } else {
+            redirectAttributes.addFlashAttribute("erro", "Não existe um cadastro deste e-mail.");
+            mv.setViewName("redirect:/cliente/esqueci/senha");
+        }
+        return mv;
+    }
+    public ModelAndView novaSenha(String senha,HttpSession session){
+        ModelAndView mv = new ModelAndView();
+        Cliente cliente = (Cliente) session.getAttribute("cliente");
+        if (cliente != null) {
+            String senhaCriptografada = encoder.encode(senha);
+            cliente.setSenha(senhaCriptografada);
+            clienteRepository.save(cliente);
+            mv.setViewName("redirect:/cliente/login");
+        }
+        return mv;
+    }
 }

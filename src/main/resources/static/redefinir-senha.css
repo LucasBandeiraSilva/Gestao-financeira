@@ -1,0 +1,29 @@
+body {
+  background-color: #ececec;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+form {
+  border-radius: 7%;
+  height: 60vh;
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+.form-control {
+  background-color: #ececec;
+}
+
+.span-required,
+.valid {
+  display: none;
+}
