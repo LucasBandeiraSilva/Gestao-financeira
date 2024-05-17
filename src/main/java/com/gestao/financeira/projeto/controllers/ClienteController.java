@@ -28,7 +28,6 @@ public class ClienteController {
 
     @GetMapping("/login")
     public String login(HttpSession session) {
-        session.invalidate(); // limpa a sessao para que o usuario possa logar novamente
         return "cliente/login";
     }
 
@@ -54,9 +53,8 @@ public class ClienteController {
     }
 
     @GetMapping("/logado")
-    public ModelAndView telaLogado(HttpSession session, Cliente cliente) {
+    public ModelAndView telaLogado() {
         ModelAndView mv = new ModelAndView();
-        session.setAttribute("usuario", cliente);
         mv.setViewName("cliente/tela-principal-logado");
         return mv;
     }
@@ -75,5 +73,9 @@ public class ClienteController {
     @PostMapping("/redefinir/senha")
     public ModelAndView novaSenha(String senha,HttpSession session){
         return clienteService.novaSenha(senha, session);
+    }
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpSession session){
+        return clienteService.logout(session);
     }
 }

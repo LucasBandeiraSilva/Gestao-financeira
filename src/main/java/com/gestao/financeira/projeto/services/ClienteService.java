@@ -1,5 +1,6 @@
 package com.gestao.financeira.projeto.services;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.BeanUtils;
@@ -21,6 +22,9 @@ public class ClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private ContaBancariaService contaBancariaService;
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -52,11 +56,14 @@ public class ClienteService {
     public ModelAndView autenticacaoLogin(String email, String senha, RedirectAttributes attributes,
             HttpSession session) {
         ModelAndView mv = new ModelAndView();
+
         Cliente cliente = clienteRepository.findByEmail(email);
         if (cliente != null && encoder.matches(senha, cliente.getSenha())) {
-            attributes.addFlashAttribute("msg", "seja bem-vindo, " + cliente.getNome() + "!");
-            mv.setViewName("redirect:/cliente/logado");
-            session.setAttribute("usuario", cliente);
+            mv.addObject("nomeCliente", cliente.getNome());
+            session.setAttribute("clienteLogado", cliente);
+            BigDecimal saldo = contaBancariaService.getSaldoCliente(cliente.getId(), session);
+            mv.addObject("saldo", saldo);
+            mv.setViewName("/cliente/tela-principal-logado");
             System.out.println("compativel");
         } else {
             attributes.addFlashAttribute("erro", "e-mail e/ou senha incorreta! Tente novamente.");
@@ -67,7 +74,7 @@ public class ClienteService {
 
     }
 
-    public ModelAndView recuperarSenha( String email, RedirectAttributes redirectAttributes,HttpSession session) {
+    public ModelAndView recuperarSenha(String email, RedirectAttributes redirectAttributes, HttpSession session) {
         ModelAndView mv = new ModelAndView();
         Cliente cliente = clienteRepository.findByEmail(email);
         if (cliente != null) {
@@ -79,7 +86,8 @@ public class ClienteService {
         }
         return mv;
     }
-    public ModelAndView novaSenha(String senha,HttpSession session){
+
+    public ModelAndView novaSenha(String senha, HttpSession session) {
         ModelAndView mv = new ModelAndView();
         Cliente cliente = (Cliente) session.getAttribute("cliente");
         if (cliente != null) {
@@ -88,6 +96,13 @@ public class ClienteService {
             clienteRepository.save(cliente);
             mv.setViewName("redirect:/cliente/login");
         }
+        return mv;
+    }
+
+    public ModelAndView logout(HttpSession session) {
+        ModelAndView mv = new ModelAndView();
+        session.invalidate();
+        mv.setViewName("redirect:/cliente/login");
         return mv;
     }
 }

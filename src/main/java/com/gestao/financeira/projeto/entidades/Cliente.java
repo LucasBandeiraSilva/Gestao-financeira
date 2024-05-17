@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,7 +39,7 @@ public class Cliente {
     private List<Investimento> investimento = new ArrayList<>();
     @OneToMany(mappedBy = "cliente")
     private List<Despesas> despesas = new ArrayList<>();
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
     private List<ContaBancaria> contaBancaria = new ArrayList<>();
 
     @Override
