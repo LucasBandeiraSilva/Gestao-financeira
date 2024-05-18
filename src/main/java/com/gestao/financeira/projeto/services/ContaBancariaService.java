@@ -50,7 +50,7 @@ public class ContaBancariaService {
             clienteRepository.save(cliente);
             contaBancariaRepository.save(contaBancaria);
             System.out.println("saldo atual: " + contaBancaria.getSaldo());
-            mv.setViewName("/cliente/tela-principal-logado");
+            mv.setViewName("/cliente/login");
         }
         return mv;
     }

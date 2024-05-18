@@ -7,14 +7,15 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum TipoInvestimento {
 
-    CDB("CDB",
-            "O CDB (Certificado de Depósito Bancário) é um investimento de renda fixa emitido por bancos, oferecendo rentabilidade a partir do valor investido, com garantia do FGC (Fundo Garantidor de Créditos)"),
-    TESTOURO_DIRETO("Testouro direto",
-            "O Tesouro Direto é uma plataforma do governo que permite investir em títulos públicos, proporcionando segurança e rentabilidade, acessível a partir de pequenos valores e com diversas opções de prazos e rentabilidades"),
-    TESOURO_SELIC("Tesouro selic",
-            "O Tesouro Selic é um título público do Tesouro Direto atrelado à taxa básica de juros da economia (Selic), ideal para quem busca segurança e liquidez, com rendimento diário e baixo risco");
+        CDB("CDB",
+                        "Segurança e rentabilidade, sem dor de cabeça", "CDB"),
+        TESTOURO_DIRETO("Testouro-direto",
+                        "Seja parte do crescimento do país e faça seu dinheiro render", "Tesouro Direto"),
+        TESOURO_SELIC("Tesouro-selic",
+                        "A solução ideal para quem busca rentabilidade e segurança sem complicações", "Tesouro Selic");
 
-    private String nome;
-    private String descricao;
+        private String nome;
+        private String descricao;
+        private String titulo;
 
 }

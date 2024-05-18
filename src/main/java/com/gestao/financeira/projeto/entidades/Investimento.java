@@ -1,6 +1,7 @@
 package com.gestao.financeira.projeto.entidades;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import com.gestao.financeira.projeto.enums.TipoInvestimento;
 
@@ -31,7 +32,7 @@ public class Investimento {
     @Enumerated(EnumType.STRING)
     private TipoInvestimento tipoInvestimento;
     private BigDecimal valorInicial;
-    private BigDecimal data_retirada;
+    private LocalDateTime data_retirada;
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
