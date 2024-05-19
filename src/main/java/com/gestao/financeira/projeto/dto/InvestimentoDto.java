@@ -1,6 +1,7 @@
 package com.gestao.financeira.projeto.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import com.gestao.financeira.projeto.enums.TipoInvestimento;
 
@@ -16,7 +17,7 @@ import lombok.Setter;
 public class InvestimentoDto {
     private TipoInvestimento tipoInvestimento;
     private BigDecimal valorInicial;
-    private BigDecimal data_retirada;
+    private LocalDateTime data_retirada;
 
     @Override
     public int hashCode() {

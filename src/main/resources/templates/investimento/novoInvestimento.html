@@ -20,7 +20,7 @@
               <div class="card-body">
                 <h5 class="card-title" th:text="${investimento.titulo}">Investimento Nome</h5>
                 <h6 class="card-text mb-2" th:text="${investimento.descricao}">Descrição do Investimento</h6>
-                <a th:href="@{/investimento/{investimento}(investimento=${investimento.nome})}" class="btn btn-primary" target="_self" rel="noopener noreferrer">Investir</a>
+                <a th:href="@{/investimento/novo/{investimento}(investimento=${investimento.nome})}" class="btn btn-primary" target="_self" rel="noopener noreferrer">Investir</a>
               </div>
             </div>
           </div>

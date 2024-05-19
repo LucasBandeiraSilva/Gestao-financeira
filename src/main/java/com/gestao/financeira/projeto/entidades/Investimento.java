@@ -1,6 +1,7 @@
 package com.gestao.financeira.projeto.entidades;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.gestao.financeira.projeto.enums.TipoInvestimento;
@@ -32,7 +33,8 @@ public class Investimento {
     @Enumerated(EnumType.STRING)
     private TipoInvestimento tipoInvestimento;
     private BigDecimal valorInicial;
-    private LocalDateTime data_retirada;
+    private LocalDate dataRetirada;
+    private String dataInvestimento;
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
@@ -44,7 +46,7 @@ public class Investimento {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((tipoInvestimento == null) ? 0 : tipoInvestimento.hashCode());
         result = prime * result + ((valorInicial == null) ? 0 : valorInicial.hashCode());
-        result = prime * result + ((data_retirada == null) ? 0 : data_retirada.hashCode());
+        result = prime * result + ((dataRetirada == null) ? 0 : dataRetirada.hashCode());
         result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
         return result;
     }
@@ -70,10 +72,10 @@ public class Investimento {
                 return false;
         } else if (!valorInicial.equals(other.valorInicial))
             return false;
-        if (data_retirada == null) {
-            if (other.data_retirada != null)
+        if (dataRetirada == null) {
+            if (other.dataRetirada != null)
                 return false;
-        } else if (!data_retirada.equals(other.data_retirada))
+        } else if (!dataRetirada.equals(other.dataRetirada))
             return false;
         if (cliente == null) {
             if (other.cliente != null)
@@ -81,6 +83,13 @@ public class Investimento {
         } else if (!cliente.equals(other.cliente))
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Investimento [id=" + id + ", tipoInvestimento=" + tipoInvestimento + ", valorInicial=" + valorInicial
+                + ", dataRetirada=" + dataRetirada + ", dataInvestimento=" + dataInvestimento + ", cliente=" + cliente
+                + "]";
     }
 
 }

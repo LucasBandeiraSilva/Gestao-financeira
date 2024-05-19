@@ -52,13 +52,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr></tr>
-                    <tr>
-                      <th scope="row">Testouro Direto</th>
-                      <td>R$ 1000,00</td>
-                      <td>01/01/2022</td>
+                    <tr th:each="investimentos : ${investimentos}">
+                      <th scope="row" th:text="${investimentos.tipoInvestimento}"></th>
+                      <td th:text="${investimentos.valorInicial}"></td>
+                      <td th:text="${investimentos.dataInvestimento}">01/01/2022</td>
                       <td>01/01/2023</td>
-                      <td>Em andamento</td>
+                      <td></td>
                     </tr>
                   </tbody>
                 </table>

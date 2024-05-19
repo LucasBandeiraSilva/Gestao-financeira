@@ -33,9 +33,9 @@ public class Cliente {
     private String senha;
     private LocalDateTime data_criacao;
     private LocalDateTime data_atualizacao;
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER)
     private List<Planejamento> planejamentos = new ArrayList<>();
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER)
     private List<Investimento> investimento = new ArrayList<>();
     @OneToMany(mappedBy = "cliente")
     private List<Despesas> despesas = new ArrayList<>();
