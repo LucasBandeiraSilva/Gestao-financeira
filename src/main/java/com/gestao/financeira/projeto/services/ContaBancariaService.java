@@ -50,7 +50,7 @@ public class ContaBancariaService {
             clienteRepository.save(cliente);
             contaBancariaRepository.save(contaBancaria);
             System.out.println("saldo atual: " + contaBancaria.getSaldo());
-            mv.setViewName("/cliente/login");
+            mv.setViewName("/cliente/tela-principal-logado");
         }
         return mv;
     }
@@ -62,5 +62,13 @@ public class ContaBancariaService {
             return contaBancaria.getSaldo();
         }
         return null;
+    }
+
+    public Boolean exisitsContaBancariaCliente(HttpSession session) {
+        Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
+        if (cliente.getContaBancaria().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 }

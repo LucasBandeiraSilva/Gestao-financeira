@@ -27,6 +27,9 @@ public class InvestimentoService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private ContaBancariaService contaBancariaService;
+
     public Cliente findInvestimentoCliente(HttpSession session) {
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
         if (cliente != null) {
@@ -37,7 +40,7 @@ public class InvestimentoService {
 
     }
 
-    public ModelAndView homeInvestimento(HttpSession session){
+    public ModelAndView homeInvestimento(HttpSession session) {
         ModelAndView mv = new ModelAndView("investimento/investimento");
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
         if (cliente.getInvestimento() != null) {
@@ -49,12 +52,17 @@ public class InvestimentoService {
     public ModelAndView novoInvestimento(HttpSession session) {
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
         ModelAndView mv = new ModelAndView();
-        if (cliente != null) {
+        Boolean ehUmaContaExistente = contaBancariaService.exisitsContaBancariaCliente(session);
+        if (cliente != null && ehUmaContaExistente) {
             System.out.println("nao nulo");
+            System.out.println("existe conta? " + ehUmaContaExistente);
             mv.setViewName("investimento/novoInvestimento");
             mv.addObject("tiposInvestimentos", TipoInvestimento.values());
-        }
+        }else
+        mv.setViewName("banco/aviso-cadastrar-conta");
         System.out.println(" nulo");
+        System.out.println("existe conta? " + ehUmaContaExistente);
+
         return mv;
 
     }
@@ -66,9 +74,10 @@ public class InvestimentoService {
         investimentoDto.setTipoInvestimento(tipoInvestimento);
         System.out.println("o investimento é: " + investimentoDto.getTipoInvestimento());
         session.setAttribute("tipoInvestimento", investimentoDto.getTipoInvestimento());
-        mv.addObject("investimento", tipoInvestimento);
         mv.addObject("investimentoDto", investimentoDto);
+        mv.addObject("investimento", tipoInvestimento);
         mv.setViewName("investimento/" + tipoInvestimento);
+
         return mv;
 
     }
@@ -77,7 +86,9 @@ public class InvestimentoService {
     public ModelAndView investimentoRealizado(InvestimentoDto investimentoDto, HttpSession session) {
         ModelAndView mv = new ModelAndView();
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
+
         if (cliente != null) {
+
             Investimento investimento = new Investimento();
             TipoInvestimento tipoInvestimento = (TipoInvestimento) session.getAttribute("tipoInvestimento");
             investimento.setCliente(cliente);
@@ -92,5 +103,4 @@ public class InvestimentoService {
         }
         return mv;
     }
-
 }

@@ -17,7 +17,7 @@
       <div class="col-2 aside">
         <aside class="text-center mb-2 d-flex flex-column">
           <p class="text-center h4">Meus Investimentos</p>
-          <button class="btn btn-primary mb-2" type="submit">Voltar</button>
+          <a th:href="@{/cliente/logado}" class="btn btn-primary mb-2" type="submit">Voltar</a>
           <button class="btn btn-primary" type="submit">Despesas</button>
         </aside>
       </div>
@@ -55,8 +55,8 @@
                     <tr th:each="investimentos : ${investimentos}">
                       <th scope="row" th:text="${investimentos.tipoInvestimento}"></th>
                       <td th:text="${investimentos.valorInicial}"></td>
-                      <td th:text="${investimentos.dataInvestimento}">01/01/2022</td>
-                      <td>01/01/2023</td>
+                      <td th:text="${investimentos.dataInvestimento}"></td>
+                      <td></td>
                       <td></td>
                     </tr>
                   </tbody>

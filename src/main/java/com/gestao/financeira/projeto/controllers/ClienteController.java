@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gestao.financeira.projeto.dto.ClienteDto;
-import com.gestao.financeira.projeto.entidades.Cliente;
 import com.gestao.financeira.projeto.services.ClienteService;
 
 import jakarta.servlet.http.HttpSession;
