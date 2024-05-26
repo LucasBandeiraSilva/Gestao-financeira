@@ -28,6 +28,12 @@ public class ClienteService {
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+    public ModelAndView telaPrincipalLogado(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("cliente/tela-principal-logado");
+        return mv;
+    }
+
     public ModelAndView saveCliente(ClienteDto clienteDto,
             BindingResult result) {
         ModelAndView mv = new ModelAndView();
@@ -61,8 +67,6 @@ public class ClienteService {
         if (cliente != null && encoder.matches(senha, cliente.getSenha())) {
             mv.addObject("nomeCliente", cliente.getNome());
             session.setAttribute("clienteLogado", cliente);
-            BigDecimal saldo = contaBancariaService.getSaldoCliente(cliente.getId(), session);
-            mv.addObject("saldo", saldo);
             mv.setViewName("/cliente/tela-principal-logado");
             System.out.println("compativel");
         } else {

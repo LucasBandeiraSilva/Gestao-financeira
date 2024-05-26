@@ -9,10 +9,9 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/cliente-logado.css">
-    
+    <link rel="stylesheet" href="/cliente-logado.css" />
+
     <title>Tela inicial</title>
-    
   </head>
   <body>
     <header>
@@ -20,9 +19,6 @@
         <div class="d-flex flex-row">
           <h2 class="me-2">Olá</h2>
           <h2 th:text="${nomeCliente}"></h2>
-          <div>
-            <p>R$  <span th:text="${saldo}"></span></p>
-          </div>
         </div>
         <div>
           <a
@@ -59,7 +55,9 @@
                   Aqui, ele encontra o ambiente ideal para crescer e gerar
                   resultados excepcionais
                 </p>
-                <a class="btn btn-success" th:href="@{/investimento}">Ver Investimentos</a>
+                <a class="btn btn-success" th:href="@{/investimento}"
+                  >Ver Investimentos</a
+                >
               </div>
             </div>
           </div>
@@ -70,9 +68,13 @@
                 Acompanhe suas despesas facilmente
               </h6>
               <p class="card-text">
-                Invista em você,  invista em seu futuro. <br> Aqui, você tem as ferramentas para controlar seu dinheiro,  e construir um patrimônio sólido
+                Invista em você, invista em seu futuro. <br />
+                Aqui, você tem as ferramentas para controlar seu dinheiro, e
+                construir um patrimônio sólido
               </p>
-              <a class="btn btn-success" th:href="@{/despesas}">monitorar meu dinheiro</a>
+              <a class="btn btn-success" th:href="@{/despesas}"
+                >monitorar meu dinheiro</a
+              >
             </div>
           </div>
         </div>

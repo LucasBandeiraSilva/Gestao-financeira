@@ -1,16 +1,11 @@
 package com.gestao.financeira.projeto.services;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
-import javax.naming.Binding;
-
-import org.hibernate.Hibernate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gestao.financeira.projeto.dto.ContaBancariaDto;
@@ -19,7 +14,6 @@ import com.gestao.financeira.projeto.entidades.ContaBancaria;
 import com.gestao.financeira.projeto.repositorios.ClienteRepository;
 import com.gestao.financeira.projeto.repositorios.ContaBancariaRepository;
 
-import ch.qos.logback.core.net.server.Client;
 import jakarta.servlet.http.HttpSession;
 
 @Service
@@ -56,7 +50,7 @@ public class ContaBancariaService {
     }
 
     public BigDecimal getSaldoCliente(Long id, HttpSession session) {
-        Cliente cliente = (Cliente) session.getAttribute("cliente");
+        Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
         if (cliente != null) {
             ContaBancaria contaBancaria = contaBancariaRepository.findByClienteId(cliente.getId()).get();
             return contaBancaria.getSaldo();
@@ -70,5 +64,15 @@ public class ContaBancariaService {
             return false;
         }
         return true;
+    }
+
+    @Transactional
+    public BigDecimal atualizarSaldoContaBancaria(BigDecimal novoSaldo, HttpSession session) {
+        Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
+        ContaBancaria contaBancaria = contaBancariaRepository.findByClienteId(cliente.getId()).get();
+        contaBancaria.setSaldo(contaBancaria.getSaldo().subtract(novoSaldo));
+        System.out.println("saldo apos investir: " + contaBancaria.getSaldo());
+        contaBancariaRepository.save(contaBancaria);
+        return contaBancaria.getSaldo();
     }
 }

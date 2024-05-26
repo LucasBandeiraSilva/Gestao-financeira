@@ -1,5 +1,6 @@
 package com.gestao.financeira.projeto.services;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -45,6 +46,8 @@ public class InvestimentoService {
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
         if (cliente.getInvestimento() != null) {
             mv.addObject("investimentos", cliente.getInvestimento());
+            BigDecimal saldo = contaBancariaService.getSaldoCliente(cliente.getId(), session);
+            mv.addObject("saldo", saldo);
         }
         return mv;
     }
@@ -58,8 +61,8 @@ public class InvestimentoService {
             System.out.println("existe conta? " + ehUmaContaExistente);
             mv.setViewName("investimento/novoInvestimento");
             mv.addObject("tiposInvestimentos", TipoInvestimento.values());
-        }else
-        mv.setViewName("banco/aviso-cadastrar-conta");
+        } else
+            mv.setViewName("banco/aviso-cadastrar-conta");
         System.out.println(" nulo");
         System.out.println("existe conta? " + ehUmaContaExistente);
 
@@ -69,6 +72,8 @@ public class InvestimentoService {
 
     public ModelAndView fazerInvestimento(HttpSession session, String investimento) {
         TipoInvestimento tipoInvestimento = TipoInvestimento.valueOf(investimento.toUpperCase());
+        Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
+        BigDecimal saldoCliente = contaBancariaService.getSaldoCliente(cliente.getId(), session);
         ModelAndView mv = new ModelAndView();
         InvestimentoDto investimentoDto = new InvestimentoDto();
         investimentoDto.setTipoInvestimento(tipoInvestimento);
@@ -76,6 +81,7 @@ public class InvestimentoService {
         session.setAttribute("tipoInvestimento", investimentoDto.getTipoInvestimento());
         mv.addObject("investimentoDto", investimentoDto);
         mv.addObject("investimento", tipoInvestimento);
+        mv.addObject("saldoCliente", saldoCliente);
         mv.setViewName("investimento/" + tipoInvestimento);
 
         return mv;
@@ -86,17 +92,20 @@ public class InvestimentoService {
     public ModelAndView investimentoRealizado(InvestimentoDto investimentoDto, HttpSession session) {
         ModelAndView mv = new ModelAndView();
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
-
         if (cliente != null) {
-
             Investimento investimento = new Investimento();
             TipoInvestimento tipoInvestimento = (TipoInvestimento) session.getAttribute("tipoInvestimento");
+
             investimento.setCliente(cliente);
             BeanUtils.copyProperties(investimentoDto, investimento);
             investimento.setTipoInvestimento(tipoInvestimento);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             investimento.setDataInvestimento(LocalDate.now().format(formatter));
             cliente.getInvestimento().add(investimento);
+            BigDecimal saldoRetirado = contaBancariaService.getSaldoCliente(cliente.getId(), session);
+            System.out.println("o seu saldo; " + saldoRetirado);
+            System.out.println("valor inicial: " + investimento.getValorInicial());
+            contaBancariaService.atualizarSaldoContaBancaria(investimento.getValorInicial(), session);
             clienteRepository.save(cliente);
             investimentoRepository.save(investimento);
             mv.setViewName("cliente/tela-principal-logado");

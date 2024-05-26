@@ -17,7 +17,12 @@
       <div class="col-2 aside">
         <aside class="text-center mb-2 d-flex flex-column">
           <p class="text-center h4">Meus Investimentos</p>
-          <a th:href="@{/cliente/logado}" class="btn btn-primary mb-2" type="submit">Voltar</a>
+          <a
+            th:href="@{/cliente/logado}"
+            class="btn btn-primary mb-2"
+            type="submit"
+            >Voltar</a
+          >
           <button class="btn btn-primary" type="submit">Despesas</button>
         </aside>
       </div>
@@ -27,8 +32,11 @@
             <div
               class="col d-flex flex-row justify-content-between align-content-center mt-1 ms-auto me-auto"
             >
-              <h4 class="">Investimentos</h4>
-              <p class="">Saldo: R$:</p>
+              <h4>Investimentos</h4>
+              <div class="d-flex flex-row">
+                <h3 class="me-2">Saldo em conta: R$ </h3>
+                <h3 th:text="${saldo}"></h3>
+              </div>
               <a
                 class="btn btn-success"
                 th:href="@{/investimento/novo}"
@@ -53,7 +61,10 @@
                   </thead>
                   <tbody>
                     <tr th:each="investimentos : ${investimentos}">
-                      <th scope="row" th:text="${investimentos.tipoInvestimento}"></th>
+                      <th
+                        scope="row"
+                        th:text="${investimentos.tipoInvestimento}"
+                      ></th>
                       <td th:text="${investimentos.valorInicial}"></td>
                       <td th:text="${investimentos.dataInvestimento}"></td>
                       <td></td>

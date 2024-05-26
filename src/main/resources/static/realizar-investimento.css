@@ -4,9 +4,12 @@
     width: 100vw;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    
 }
 form{
     width: 30vw;
     height: 45vh;
+}
+.span-required,.valid{
+    display: none;
 }

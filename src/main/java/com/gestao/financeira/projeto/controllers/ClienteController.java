@@ -53,9 +53,7 @@ public class ClienteController {
 
     @GetMapping("/logado")
     public ModelAndView telaLogado() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("cliente/tela-principal-logado");
-        return mv;
+        return clienteService.telaPrincipalLogado();
     }
 
     @GetMapping("/esqueci/senha")
@@ -66,15 +64,17 @@ public class ClienteController {
     }
 
     @PostMapping("/email")
-    public ModelAndView recuperarSenha(String email,RedirectAttributes redirectAttributes,HttpSession session) {
-        return clienteService.recuperarSenha(email,redirectAttributes,session);
+    public ModelAndView recuperarSenha(String email, RedirectAttributes redirectAttributes, HttpSession session) {
+        return clienteService.recuperarSenha(email, redirectAttributes, session);
     }
+
     @PostMapping("/redefinir/senha")
-    public ModelAndView novaSenha(String senha,HttpSession session){
+    public ModelAndView novaSenha(String senha, HttpSession session) {
         return clienteService.novaSenha(senha, session);
     }
+
     @GetMapping("/logout")
-    public ModelAndView logout(HttpSession session){
+    public ModelAndView logout(HttpSession session) {
         return clienteService.logout(session);
     }
 }

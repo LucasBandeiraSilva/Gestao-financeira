@@ -13,31 +13,55 @@
     <title>Realizar Investimento</title>
   </head>
   <body>
-    <div class="container d-flex">
-      <main>
-        <form
-          class="border rounded-3"
-          th:object="${investimentoDto}"
-          action="/investimento/realizado"
-          method="post"
-        >
-          <h4 class="mb-4">Realizar Investimento</h4>
-          <label class="form-label" for="valor">Valor</label>
-          <input
-            type="number"
-            class="form-control w-75"
-            id="valor"
-            th:field="*{valorInicial}"
-            placeholder="R$ 0,00"
-            required
-          />
-          <div class="text-center">
-            <button type="submit" class="btn btn-success text-center mt-2">
-              Fazer Investimento
-            </button>
-          </div>
-        </form>
-      </main>
+    <div class="container">
+      <div class="container row-cols-2 flex-row">
+        <div class="col">
+          <main>
+            <form
+            id="form"
+              class="border rounded-3 d-flex flex-column"
+              th:object="${investimentoDto}"
+              action="/investimento/realizado"
+              method="post"
+            >
+              <fieldset class="form-group">
+                <legend>Realizar Investimento</legend>
+
+                <div class="d-flex">
+                  <h5>Saldo do cliente: R$</h5>
+                  <h5
+                    th:text="${saldoCliente}"
+                    class="mb-4"
+                    id="saldoCliente"
+                  ></h5>
+                </div>
+                <label class="form-label" for="valor">Valor</label>
+                <input
+                  type="number"
+                  class="form-control w-75 required"
+                  id="valor"
+                  th:field="*{valorInicial}"
+                  placeholder="R$ 0,00"
+                  oninput="validarValor()"
+                  required
+                />
+                <span class="span-required">Você deve digitar um valor igual ou menor do que o seu saldo!</span>
+                <span class="valid">O valor está adequado!</span>
+                <div class="text-center">
+                  <button
+                    type="submit"
+                    class="btn btn-success text-center mt-2"
+                  >
+                    Fazer Investimento
+                  </button>
+                </div>
+              </fieldset>
+            </form>
+          </main>
+        </div>
+        <div class="col">aaaaaaaaaa</div>
+      </div>
     </div>
   </body>
+  <script src="/js/verifica-saldo.js"></script>
 </html>
