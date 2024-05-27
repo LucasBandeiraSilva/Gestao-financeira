@@ -31,9 +31,9 @@
               src="/imgs/money-bag.png"
               alt="money"
               srcset=""
-              width="250px"
-              height="250px"
-              class="mb-5"
+              width="230px"
+              height="230px"
+              class=""
             />
             <p class="h3 text-light">Faça seu login!</p>
           </div>
@@ -58,6 +58,9 @@
             <div class="d-flex align-items-center justify-content-center flex-column" id="option">
               <button type="submit" class="btn mb-2">Entrar</button>
               <p class="h4" id="link"><a target="_blank" th:href="@{/cliente/esqueci/senha}">Esqueceu a senha?</a></p>
+              <div class="d-flex align-items-center justify-content-center flex-row">
+                <h5>Não tem uma conta? <a th:href="@{/cliente/cadastro}" target="_self" rel="noopener noreferrer">Crie uma conta agora mesmo!</a></h5>
+              </div>
             </div>
           </div>
         </div>

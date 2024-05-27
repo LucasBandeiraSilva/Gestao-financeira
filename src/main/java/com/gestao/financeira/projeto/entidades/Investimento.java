@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.gestao.financeira.projeto.enums.StatusInvestimento;
 import com.gestao.financeira.projeto.enums.TipoInvestimento;
 
 import jakarta.persistence.Entity;
@@ -47,6 +48,7 @@ public class Investimento {
         result = prime * result + ((tipoInvestimento == null) ? 0 : tipoInvestimento.hashCode());
         result = prime * result + ((valorInicial == null) ? 0 : valorInicial.hashCode());
         result = prime * result + ((dataRetirada == null) ? 0 : dataRetirada.hashCode());
+        result = prime * result + ((dataInvestimento == null) ? 0 : dataInvestimento.hashCode());
         result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
         return result;
     }
@@ -76,6 +78,11 @@ public class Investimento {
             if (other.dataRetirada != null)
                 return false;
         } else if (!dataRetirada.equals(other.dataRetirada))
+            return false;
+        if (dataInvestimento == null) {
+            if (other.dataInvestimento != null)
+                return false;
+        } else if (!dataInvestimento.equals(other.dataInvestimento))
             return false;
         if (cliente == null) {
             if (other.cliente != null)

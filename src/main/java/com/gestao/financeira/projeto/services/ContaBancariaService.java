@@ -1,6 +1,8 @@
 package com.gestao.financeira.projeto.services;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gestao.financeira.projeto.dto.ContaBancariaDto;
 import com.gestao.financeira.projeto.entidades.Cliente;
 import com.gestao.financeira.projeto.entidades.ContaBancaria;
+import com.gestao.financeira.projeto.enums.TipoBanco;
+import com.gestao.financeira.projeto.enums.TipoConta;
 import com.gestao.financeira.projeto.repositorios.ClienteRepository;
 import com.gestao.financeira.projeto.repositorios.ContaBancariaRepository;
 
@@ -23,6 +27,15 @@ public class ContaBancariaService {
     private ContaBancariaRepository contaBancariaRepository;
     @Autowired
     private ClienteRepository clienteRepository;
+
+    public ModelAndView cadastrarConta() {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("tipoConta", TipoConta.values());
+        mv.addObject("tipoBanco", TipoBanco.values());
+        mv.addObject("contaBancaria", new ContaBancariaDto());
+        mv.setViewName("banco/cadastro");
+        return mv;
+    }
 
     @Transactional
     public ModelAndView salvarConta(HttpSession session, ContaBancariaDto contaBancariaDto) {
@@ -57,22 +70,30 @@ public class ContaBancariaService {
         }
         return null;
     }
-
     public Boolean exisitsContaBancariaCliente(HttpSession session) {
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
-        if (cliente.getContaBancaria().isEmpty()) {
+        if ( cliente != null && cliente.getContaBancaria().isEmpty()) {
             return false;
         }
         return true;
     }
-
     @Transactional
-    public BigDecimal atualizarSaldoContaBancaria(BigDecimal novoSaldo, HttpSession session) {
+    public BigDecimal atualizarSaldoContaBancaria(BigDecimal saldoRetirado, HttpSession session) {
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
         ContaBancaria contaBancaria = contaBancariaRepository.findByClienteId(cliente.getId()).get();
-        contaBancaria.setSaldo(contaBancaria.getSaldo().subtract(novoSaldo));
+        contaBancaria.setSaldo(contaBancaria.getSaldo().subtract(saldoRetirado));
         System.out.println("saldo apos investir: " + contaBancaria.getSaldo());
         contaBancariaRepository.save(contaBancaria);
         return contaBancaria.getSaldo();
+    }
+
+    public void atualizarSaldoComPorcentagem( BigDecimal porcentagem, Long id,Cliente cliente) {
+
+        ContaBancaria contaBancaria = contaBancariaRepository.findByClienteId(cliente.getId()).get();
+        BigDecimal valorAumentado = contaBancaria.getSaldo().multiply(porcentagem);
+        contaBancaria.setSaldo(contaBancaria.getSaldo().add(valorAumentado));
+        System.out.println("novo saldo com porcentagem: " + contaBancaria.getSaldo().setScale(2, RoundingMode.HALF_UP));
+        contaBancariaRepository.save(contaBancaria);
+        
     }
 }

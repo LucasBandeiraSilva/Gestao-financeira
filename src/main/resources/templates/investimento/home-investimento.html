@@ -23,7 +23,8 @@
             type="submit"
             >Voltar</a
           >
-          <button class="btn btn-primary" type="submit">Despesas</button>
+          <button class="btn btn-primary mb-2" type="submit">Despesas</button>
+          <button class="btn btn-primary" type="submit">Metas</button>
         </aside>
       </div>
       <div class="col-10">
@@ -34,7 +35,7 @@
             >
               <h4>Investimentos</h4>
               <div class="d-flex flex-row">
-                <h3 class="me-2">Saldo em conta: R$ </h3>
+                <h3 class="me-2">Saldo em conta: R$</h3>
                 <h3 th:text="${saldo}"></h3>
               </div>
               <a
@@ -49,26 +50,32 @@
           <div class="row">
             <div class="col">
               <main class="container">
-                <table class="table">
+                <table class="table text-center">
                   <thead>
                     <tr>
                       <th scope="col">Nome</th>
-                      <th scope="col">Valor</th>
+                      <th scope="col">Valor em R$</th>
                       <th scope="col">Data Investimento</th>
-                      <th scope="col">Data Retirada</th>
-                      <th scope="col">Status</th>
+                      <th scope="col">Ação</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr th:each="investimentos : ${investimentos}">
                       <th
                         scope="row"
-                        th:text="${investimentos.tipoInvestimento}"
+                        th:text="${investimentos.tipoInvestimento.nome}"
                       ></th>
                       <td th:text="${investimentos.valorInicial}"></td>
                       <td th:text="${investimentos.dataInvestimento}"></td>
-                      <td></td>
-                      <td></td>
+                      <td>
+                        <a
+                          class="btn btn-primary"
+                          th:href="@{/investimento/resgatar/{id}(id=${investimentos.id})}"
+                          target="_self"
+                          rel="noopener noreferrer"
+                          >Resgatar Investimento</a
+                        >
+                      </td>
                     </tr>
                   </tbody>
                 </table>

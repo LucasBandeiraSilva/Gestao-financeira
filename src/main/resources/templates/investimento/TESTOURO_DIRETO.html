@@ -18,7 +18,7 @@
         <div class="col">
           <main>
             <form
-            id="form"
+              id="form"
               class="border rounded-3 d-flex flex-column"
               th:object="${investimentoDto}"
               action="/investimento/realizado"
@@ -45,7 +45,10 @@
                   oninput="validarValor()"
                   required
                 />
-                <span class="span-required">Você deve digitar um valor igual ou menor do que o seu saldo!</span>
+                <span class="span-required"
+                  >Você deve digitar um valor igual ou menor do que o seu
+                  saldo!</span
+                >
                 <span class="valid">O valor está adequado!</span>
                 <div class="text-center">
                   <button

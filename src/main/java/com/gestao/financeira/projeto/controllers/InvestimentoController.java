@@ -36,4 +36,8 @@ public class InvestimentoController {
     public ModelAndView investimentoRealizado(@ModelAttribute("InvestimentoDto") InvestimentoDto investimentoDto,HttpSession session){
         return investimentoService.investimentoRealizado(investimentoDto,session);
     }
+    @GetMapping("/resgatar/{id}")
+    public ModelAndView resgatarInvestimento(@PathVariable("id") Long id,HttpSession session){
+        return investimentoService.resgatarInvestimento(id,session);
+    }
 }

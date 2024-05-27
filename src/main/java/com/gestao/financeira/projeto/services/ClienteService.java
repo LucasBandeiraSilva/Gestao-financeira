@@ -1,6 +1,5 @@
 package com.gestao.financeira.projeto.services;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.BeanUtils;
@@ -23,10 +22,16 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    @Autowired
-    private ContaBancariaService contaBancariaService;
+    
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    public ModelAndView cadastro(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("cliente/cadastro");
+        mv.addObject("clienteDto", new ClienteDto());
+        return mv;
+    }
 
     public ModelAndView telaPrincipalLogado(){
         ModelAndView mv = new ModelAndView();

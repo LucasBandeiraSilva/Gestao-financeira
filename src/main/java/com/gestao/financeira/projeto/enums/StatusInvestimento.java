@@ -2,11 +2,12 @@ package com.gestao.financeira.projeto.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
 public enum StatusInvestimento {
-    ATIVO("ativo"),CANCELADO("cancelado"),RETIRADO("retirado");
+    RENDENDO("ativo"),RETIRADO("retirado");
 
     private String nome;
 

@@ -24,7 +24,7 @@ function setSuccess(index) {
 function validarValor(){
     const valor = parseFloat(campos[0].value.replace(",", "."));
 
-    if(valor> saldoConvertido){
+    if(valor>= saldoConvertido){
         setError(0)
         isInvalidSaldo = true
     }else{

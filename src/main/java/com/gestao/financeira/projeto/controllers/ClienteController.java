@@ -32,10 +32,7 @@ public class ClienteController {
 
     @GetMapping("/cadastro")
     public ModelAndView cadastro() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("cliente/cadastro");
-        mv.addObject("clienteDto", new ClienteDto());
-        return mv;
+        return clienteService.cadastro();
     }
 
     @PostMapping("/cadastro")
