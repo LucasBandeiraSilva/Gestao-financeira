@@ -42,9 +42,9 @@
     </header>
     <main>
       <div class="container">
-        <div class="row-cols-3 d-flex flex-row justify-content-around">
+        <div class=" row-cols-1 d-flex flex-row justify-content-around row-cols-md-3">
           <div class="col">
-            <div class="card">
+            <div class="card me-2">
               <div class="card-body">
                 <h5 class="card-title">Investimentos</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
@@ -61,7 +61,7 @@
               </div>
             </div>
           </div>
-          <div class="card">
+          <div class="card me-2">
             <div class="card-body">
               <h5 class="card-title">Despesas</h5>
               <h6 class="card-subtitle mb-2 text-muted">
@@ -74,6 +74,22 @@
               </p>
               <a class="btn btn-success" th:href="@{/despesas}"
                 >monitorar meu dinheiro</a
+              >
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Planejamento financeiro</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                Seja a melhor versão de si mesmo: Crie metas e alcance o
+                sucesso!
+              </h6>
+              <p class="card-text">
+                Defina metas e trace um plano para alcançar seus objetivos e se
+                tornar a melhor versão de si mesmo
+              </p>
+              <a class="btn btn-success mt-4" th:href="@{/planejamento}"
+                >Definir Planos</a
               >
             </div>
           </div>

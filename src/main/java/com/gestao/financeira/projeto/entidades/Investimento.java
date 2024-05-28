@@ -2,9 +2,7 @@ package com.gestao.financeira.projeto.entidades;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-import com.gestao.financeira.projeto.enums.StatusInvestimento;
 import com.gestao.financeira.projeto.enums.TipoInvestimento;
 
 import jakarta.persistence.Entity;
