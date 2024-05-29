@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gestao.financeira.projeto.dto.InvestimentoDto;
 import com.gestao.financeira.projeto.entidades.Cliente;
 import com.gestao.financeira.projeto.entidades.Investimento;
-import com.gestao.financeira.projeto.enums.StatusInvestimento;
 import com.gestao.financeira.projeto.enums.TipoInvestimento;
 import com.gestao.financeira.projeto.repositorios.ClienteRepository;
 import com.gestao.financeira.projeto.repositorios.InvestimentoRepository;
@@ -52,6 +51,7 @@ public class InvestimentoService {
         List<Investimento> investimentos = investimentoRepository.findAll();
 
         mv.addObject("investimentos", investimentos);
+        mv.addObject("listaVazia", investimentos.isEmpty());
         BigDecimal saldo = contaBancariaService.getSaldoCliente(cliente.getId(), session);
         mv.addObject("saldo", saldo);
 
@@ -88,7 +88,7 @@ public class InvestimentoService {
             mv.addObject("investimento", tipoInvestimento);
             mv.addObject("saldoCliente", saldoCliente);
             mv.setViewName("investimento/" + tipoInvestimento);
-        }
+        }else
         mv.setViewName("cliente/login");
         return mv;
 

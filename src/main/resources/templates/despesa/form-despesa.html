@@ -9,8 +9,8 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/form-planejamento.css" />
-    <title>Realizar Investimento</title>
+    <link rel="stylesheet" href="/form-despesa.css" />
+    <title>Adicionar Despesa</title>
   </head>
   <body>
     <div class="container text-center">
@@ -20,73 +20,50 @@
             <form
               id="form"
               class="border rounded-3 d-flex flex-column"
-              th:object="${planejamentoDto}"
-              action="/planejamento/realizado"
+              th:object="${despesaDto}"
+              action="/despesa/adicionada"
               method="post"
             >
               <fieldset class="form-group">
-                <legend class="h4">Adicionar Planejamento</legend>
+                <legend class="h4">Adicionar Despesa</legend>
 
                 <label class="form-label" for="nome"
-                  >Informe o título do planejamento</label
+                  >Informe o título da despesa</label
                 >
                 <input
                   type="text"
                   class="form-control w-75 mx-auto mb-2"
                   id="valor"
-                  th:field="*{titulo}"
+                  th:field="*{nome}"
                   required
-                  placeholder="Ex: Viagem"
+                  placeholder="Ex: Conta de luz"
                 />
                 <div class="form-group">
-                  <label class="form-label" for="descricao"
-                    >Forneça o valor desejado para o planejamento
+                  <label class="form-label" for="valor"
+                    >Forneça o valor da despesa
                   </label>
                   <input
                     class="form-control mx-auto w-75 mb-2"
                     type="number"
-                    th:field="*{valor}"
+                    th:field="*{valorDespesa}"
                     id="valor"
                     placeholder="100.00"
                   />
                 </div>
-                <div class="form-group">
-                  <label class="form-label" for="descricao"
-                    >Forneça uma pequena descrição do planejamento</label
-                  >
-                  <textarea
-                    class="form-control w-75 mx-auto mb-2"
-                    th:field="*{descricao}"
-                    id="descricao"
-                    rows="3"
-                    placeholder="Ex: preciso economizar para viajar no final do ano"
-                  ></textarea>
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="data"
-                    >Informe até quando você quer seguir com o
-                    planjeamento</label
-                  >
-                  <input
-                    class="form-control w-75 mx-auto mb-2"
-                    type="date"
-                    th:field="*{dataTermino}"
-                    id=""
-                  />
-                </div>
+                
                 <div class="form-group">
                   <label class="form-label" for="tipo"
-                    >Selecione a categoria de seu planejamento abaixo</label
+                    >Selecione a categoria da sua despesa abaixo</label
                   >
                   <select
                     class="form-select w-75 mx-auto"
-                    th:field="*{tipoPlanejamento}"
-                    id="tipoPlanejamento"
+                    th:field="*{tipoDespesa}"
+                    id="tipoDespesa"
                   >
                     <option
-                      th:each="tipoPlanejamento : ${tipoPlanejamento}"
-                      th:value="${tipoPlanejamento}"
-                      th:text="${tipoPlanejamento.nome}"
+                      th:each="tipoDespesa : ${tipoDespesa}"
+                      th:value="${tipoDespesa}"
+                      th:text="${tipoDespesa.descricao}"
                     >
                       >
                     </option>

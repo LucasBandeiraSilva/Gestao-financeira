@@ -1,6 +1,7 @@
 package com.gestao.financeira.projeto.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import com.gestao.financeira.projeto.enums.TipoDespesas;
 
@@ -14,35 +15,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DespesasDto {
-    private TipoDespesas TipoDespesas;
+    private TipoDespesas tipoDespesa;
     private BigDecimal valorDespesa;
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((TipoDespesas == null) ? 0 : TipoDespesas.hashCode());
-        result = prime * result + ((valorDespesa == null) ? 0 : valorDespesa.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        DespesasDto other = (DespesasDto) obj;
-        if (TipoDespesas != other.TipoDespesas)
-            return false;
-        if (valorDespesa == null) {
-            if (other.valorDespesa != null)
-                return false;
-        } else if (!valorDespesa.equals(other.valorDespesa))
-            return false;
-        return true;
-    }
+    private String nome;
+    private LocalDate dataDespesaAdicionada;
 
 }

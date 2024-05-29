@@ -3,6 +3,7 @@ package com.gestao.financeira.projeto.services;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,9 @@ public class PlanejamentoService {
 
     public ModelAndView homePlanejamento() {
         ModelAndView mv = new ModelAndView("planejamento/home-Planejamento");
-        mv.addObject("planejamentos", planejamentoRepository.findAll());
+        List<Planejamento> planejamentos = planejamentoRepository.findAll();
+        mv.addObject("listaVazia", planejamentos.isEmpty());
+        mv.addObject("planejamentos", planejamentos);
         
         return mv;
     }

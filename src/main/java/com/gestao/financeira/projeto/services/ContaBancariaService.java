@@ -40,25 +40,16 @@ public class ContaBancariaService {
     @Transactional
     public ModelAndView salvarConta(HttpSession session, ContaBancariaDto contaBancariaDto) {
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
-        if (cliente != null) {
-            System.out.println("entrando na pagina....");
-        }
-
         ModelAndView mv = new ModelAndView();
-        if (cliente == null) {
-            mv.setViewName("/cliente/cadastro");
-            return mv;
-        } else {
 
-            ContaBancaria contaBancaria = new ContaBancaria();
-            BeanUtils.copyProperties(contaBancariaDto, contaBancaria);
-            contaBancaria.setCliente(cliente);
-            cliente.getContaBancaria().add(contaBancaria);
-            clienteRepository.save(cliente);
-            contaBancariaRepository.save(contaBancaria);
-            System.out.println("saldo atual: " + contaBancaria.getSaldo());
-            mv.setViewName("/cliente/tela-principal-logado");
-        }
+        ContaBancaria contaBancaria = new ContaBancaria();
+        BeanUtils.copyProperties(contaBancariaDto, contaBancaria);
+        contaBancaria.setCliente(cliente);
+        cliente.getContaBancaria().add(contaBancaria);
+        clienteRepository.save(cliente);
+        contaBancariaRepository.save(contaBancaria);
+        mv.setViewName("/cliente/tela-principal-logado");
+
         return mv;
     }
 
@@ -70,13 +61,15 @@ public class ContaBancariaService {
         }
         return null;
     }
+
     public Boolean exisitsContaBancariaCliente(HttpSession session) {
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
-        if ( cliente != null && cliente.getContaBancaria().isEmpty()) {
+        if (cliente != null && cliente.getContaBancaria().isEmpty()) {
             return false;
         }
         return true;
     }
+
     @Transactional
     public BigDecimal atualizarSaldoContaBancaria(BigDecimal saldoRetirado, HttpSession session) {
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
@@ -87,13 +80,13 @@ public class ContaBancariaService {
         return contaBancaria.getSaldo();
     }
 
-    public void atualizarSaldoComPorcentagem( BigDecimal porcentagem, Long id,Cliente cliente) {
+    public void atualizarSaldoComPorcentagem(BigDecimal porcentagem, Long id, Cliente cliente) {
 
         ContaBancaria contaBancaria = contaBancariaRepository.findByClienteId(cliente.getId()).get();
         BigDecimal valorAumentado = contaBancaria.getSaldo().multiply(porcentagem);
         contaBancaria.setSaldo(contaBancaria.getSaldo().add(valorAumentado));
         System.out.println("novo saldo com porcentagem: " + contaBancaria.getSaldo().setScale(2, RoundingMode.HALF_UP));
         contaBancariaRepository.save(contaBancaria);
-        
+
     }
 }

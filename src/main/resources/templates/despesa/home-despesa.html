@@ -9,14 +9,14 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/planejamento.css" />
-    <title>planejamentos</title>
+    <link rel="stylesheet" href="/despesa.css" />
+    <title>Despesas</title>
   </head>
   <body>
     <div class="row container-fluid">
       <div class="col-2 aside">
         <aside class="text-center mb-2 d-flex flex-column">
-          <p class="text-center h4">Meus Planejamentos</p>
+          <p class="text-center h4">Minhas Despesas</p>
           <a
             th:href="@{/cliente/logado}"
             class="btn btn-primary mb-2"
@@ -30,8 +30,8 @@
             type="submit"
             >Investimentos</a
           >
-          <a th:href="@{/despesa}" class="btn btn-primary" type="submit"
-            >Despesas</a
+          <a th:href="@{/planejamento}" class="btn btn-primary" type="submit"
+            >Planejamentos</a
           >
         </aside>
       </div>
@@ -41,60 +41,58 @@
             <div
               class="col d-flex flex-row justify-content-around align-content-center mt-1 ms-auto me-auto"
             >
-              <h4>Planejamentos</h4>
+              <h4>Despesas</h4>
 
               <a
                 class="btn btn-success"
-                th:href="@{/planejamento/novo}"
+                th:href="@{/despesa/adicionar}"
                 target="_self"
                 rel="noopener noreferrer"
-                >Adicionar um planejamento</a
+                >Adicionar Despesas</a
               >
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <main class="container">
+              <main class="container table-responsive">
                 <div th:if="${listaVazia}">
-                  <h3 class="text-center">Nenhum planejamento cadastrado</h3>
+                  <h3>Nenhuma despesa encontrada!</h3>
                 </div>
                 <div th:unless="${listaVazia}">
                   <table class="table table align-middle text-center">
                     <thead>
                       <tr>
                         <th scope="col">Nome</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Categoria do planejamento</th>
-                        <th scope="col">Valor em R$</th>
-                        <th scope="col">Data Inicio</th>
-                        <th scope="col">Data fim</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Categoria de despesa</th>
+                        <th scope="col">Data de adição</th>
                         <th scope="col">Ação</th>
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                      <tr th:each="planejamentos : ${planejamentos}">
-                        <th scope="row" th:text="${planejamentos.titulo}"></th>
-                        <td th:text="${planejamentos.descricao}"></td>
+                      <tr th:each="despesas : ${despesas}">
+                        <th scope="row" th:text="${despesas.nome}"></th>
+                        <td th:text="${despesas.valorDespesa}"></td>
+                        <td th:text="${despesas.TipoDespesa.descricao}"></td>
                         <td
-                          th:text="${planejamentos.tipoPlanejamento.nome}"
-                        ></td>
-                        <td th:text="${planejamentos.valor}"></td>
-                        <td th:text="${planejamentos.dataInicio}"></td>
-                        <td
-                          th:text="${#temporals.format(planejamentos.dataTermino, 'dd/MM/yyyy')}"
+                          th:text="${#temporals.format(despesas.dataDespesaAdicionada, 'dd/MM/yyyy')}"
                         ></td>
                         <td>
                           <a
-                            class="btn btn-outline-primary"
-                            th:href="@{/planejamento/concluir/{id}(id=${planejamentos.id})}"
+                            class="btn btn-outline-danger"
+                            th:href="@{/despesa/excluir/{id}(id=${despesas.id})}"
                             target="_self"
                             rel="noopener noreferrer"
-                            >Concluir planejamento</a
+                            >Excluir despesa</a
                           >
                         </td>
                       </tr>
                     </tbody>
                   </table>
+                  <div class="d-flex flex-row">
+                    <h3>O total de suas despesas é de: R$ </h3>
+                    <H3 th:text="${totalDespesas}"></H3>
+                  </div>
                 </div>
               </main>
             </div>

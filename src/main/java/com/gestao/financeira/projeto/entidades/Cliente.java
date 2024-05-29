@@ -38,7 +38,7 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER)
     private List<Investimento> investimento = new ArrayList<>();
     @OneToMany(mappedBy = "cliente")
-    private List<Despesas> despesas = new ArrayList<>();
+    private List<Despesa> despesas = new ArrayList<>();
     @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
     private List<ContaBancaria> contaBancaria = new ArrayList<>();
 

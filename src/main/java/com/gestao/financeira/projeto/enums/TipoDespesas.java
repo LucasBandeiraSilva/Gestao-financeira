@@ -6,7 +6,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum TipoDespesas {
-    ALIMENTACAO("Alimentação"), CONTAS("Contas"), AGUA("Agua"), LUZ("Luz"), DIVERSOS("Diversos");
+    ALIMENTACAO("Alimentação"), CONTAS("Contas"), AGUA("Água"), LUZ("Luz"),
+    SAUDE("Saúde"), TRANSPORTE("Transporte"), MORADIA("Moradia"),
+    EDUCACAO("Educação"), LIVROS("Livros"), CULTURA("Cultura"), LAZER("Lazer"),
+    OUTROS("Outros"), INVESTIMENTO("Investimento"), IMPREVISTOS("Impreistos");
 
     private String descricao;
 }
