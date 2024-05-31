@@ -17,22 +17,21 @@
     <header>
       <div class="justify-content-between align-items-center d-flex">
         <div class="d-flex flex-row">
-          <h2 class="me-2">Olá</h2>
+          <h2 class="me-2">Olá! Seja Bem-Vindo(a)!</h2>
           <h2 th:text="${nomeCliente}"></h2>
         </div>
-
         <div>
           <a
-            class="btn btn-primary me-2"
-            th:href="@{/cliente/logout}"
+            class="btn btn-primary"
+            th:href="@{/cliente/login}"
             target="_self"
             rel="noopener noreferrer"
-            >Logout</a
+            >Login</a
           >
         </div>
       </div>
     </header>
-    <main class="rounded">
+    <main>
       <div class="container">
         <div
           class="row-cols-1 d-flex flex-row justify-content-around row-cols-md-3"
@@ -49,7 +48,7 @@
                   Aqui, ele encontra o ambiente ideal para crescer e gerar
                   resultados excepcionais
                 </p>
-                <a class="btn btn-success" th:href="@{/investimento}"
+                <a class="btn btn-success" th:href="@{/cliente/login}"
                   >Ver Investimentos</a
                 >
               </div>
@@ -66,7 +65,7 @@
                 Aqui, você tem as ferramentas para controlar seu dinheiro, e
                 construir um patrimônio sólido
               </p>
-              <a class="btn btn-success" th:href="@{/despesa}"
+              <a class="btn btn-success" th:href="@{/cliente/login}"
                 >monitorar meu dinheiro</a
               >
             </div>
@@ -82,7 +81,7 @@
                 Defina metas e trace um plano para alcançar seus objetivos e se
                 tornar a melhor versão de si mesmo
               </p>
-              <a class="btn btn-success mt-4" th:href="@{/planejamento}"
+              <a class="btn btn-success mt-4" th:href="@{/cliente/login}"
                 >Definir Planos</a
               >
             </div>

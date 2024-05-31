@@ -26,6 +26,10 @@ public class ClienteService {
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+    public ModelAndView telaPrinciapalNaoLogado(){
+        return new ModelAndView("cliente/tela-principal-nao-logado");
+    }
+
     public ModelAndView cadastro(){
         ModelAndView mv = new ModelAndView();
         mv.setViewName("cliente/cadastro");
@@ -35,7 +39,7 @@ public class ClienteService {
 
     public ModelAndView telaPrincipalLogado(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("cliente/tela-principal-logado");
+        mv.setViewName("cliente/tela-principal-nao-logado");
         return mv;
     }
 

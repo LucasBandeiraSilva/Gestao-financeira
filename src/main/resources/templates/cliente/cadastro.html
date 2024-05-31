@@ -44,9 +44,14 @@
               type="email"
               th:field="*{email}"
               id="email"
-              class="form-control mb-3"
+              class="form-control mb-3 required"
               th:errorclass="is-invalid"
+              oninput="emailValidator()"
             />
+            <span class="span-required"
+              >O e-mail está inválido!</span
+            >
+            <span class="valid"> O e-mail está válido!!</span>
             <div class="invalid-feedback" th:errors="*{email}"></div>
             <label for="cpf" class="form-label">CPF:</label>
             <input
@@ -54,9 +59,12 @@
               name="cpf"
               th:field="*{cpf}"
               id="cpf"
-              class="form-control mb-3"
+              class="form-control mb-3 required"
               th:errorclass="is-invalid"
+              oninput="cpfValidator()"
             />
+            <span class="span-required">O cpf está inválido!</span>
+            <span class="valid">O cpf está válido!</span>
             <div class="invalid-feedback" th:errors="*{cpf}"></div>
             <label for="senha" class="form-label">Senha:</label>
             <input
@@ -96,6 +104,6 @@
         </form>
       </div>
     </main>
-    <script src="/js/valida-senha-cliente.js"></script>
+    <script src="/js/valida-cadastro-cliente.js"></script>
   </body>
 </html>

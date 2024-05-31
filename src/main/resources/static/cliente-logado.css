@@ -1,6 +1,11 @@
 main{
     background-color: #ececec;
+    width:95vw;
+    height:95vh;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 .container {
     display: flex;
     height: 100vh;
