@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,6 @@ public class InvestimentoService {
         String formattedInvestimento = investimento.replace("-", "_").toUpperCase();
         TipoInvestimento tipoInvestimento = TipoInvestimento.valueOf(formattedInvestimento);
 
-        System.out.println("o investimento é: " + tipoInvestimento);
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
         ModelAndView mv = new ModelAndView();
         if (cliente != null) {
@@ -88,8 +88,8 @@ public class InvestimentoService {
             mv.addObject("investimento", tipoInvestimento);
             mv.addObject("saldoCliente", saldoCliente);
             mv.setViewName("investimento/" + tipoInvestimento);
-        }else
-        mv.setViewName("cliente/login");
+        } else
+            mv.setViewName("cliente/login");
         return mv;
 
     }
@@ -107,28 +107,36 @@ public class InvestimentoService {
             investimento.setTipoInvestimento(tipoInvestimento);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             investimento.setDataInvestimento(LocalDate.now().format(formatter));
-            cliente.getInvestimento().add(investimento);
             contaBancariaService.atualizarSaldoContaBancaria(investimento.getValorInicial(), session);
-            clienteRepository.save(cliente);
             investimentoRepository.save(investimento);
-            mv.setViewName("cliente/tela-principal-logado");
+            cliente.getInvestimento().add(investimento);
+            mv.setViewName("investimento/sucesso-aplicar-investimento");
         }
         return mv;
     }
 
+    @Transactional
     public ModelAndView resgatarInvestimento(Long id, HttpSession session) {
         ModelAndView mv = new ModelAndView();
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
         TipoInvestimento tipoInvestimento = (TipoInvestimento) session.getAttribute("tipoInvestimento");
-        Investimento investimento = investimentoRepository.findById(id).get();
 
-        contaBancariaService.atualizarSaldoComPorcentagem(new BigDecimal(tipoInvestimento.getPorcentagemRetorno()), id,
-                cliente);
-        investimentoRepository.deleteById(investimento.getId());
+        Optional<Investimento> optionalInvestimento = investimentoRepository.findById(id);
+        if (optionalInvestimento.isPresent()) {
+            Investimento investimento = optionalInvestimento.get();
+            BigDecimal valorInvestido = investimento.getValorInicial();
+            BigDecimal porcentagemRetorno = tipoInvestimento.getPorcentagemRetorno();
+            BigDecimal valorAumentado = valorInvestido.multiply(porcentagemRetorno);
+            contaBancariaService.atualizarSaldoContaBancaria(investimento.getValorInicial().negate(), session);
 
-        mv.setViewName("investimento/sucesso-resgate");
+            investimentoRepository.delete(investimento);
+            contaBancariaService.atualizarSaldoComPorcentagem(valorAumentado, cliente);
 
+            mv.setViewName("investimento/sucesso-resgate");
+            return mv;
+        }
+        mv.setViewName("investimento/nao-encontrado");
         return mv;
-
     }
+
 }

@@ -2,7 +2,6 @@ package com.gestao.financeira.projeto.services;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,18 +74,13 @@ public class ContaBancariaService {
         Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
         ContaBancaria contaBancaria = contaBancariaRepository.findByClienteId(cliente.getId()).get();
         contaBancaria.setSaldo(contaBancaria.getSaldo().subtract(saldoRetirado));
-        System.out.println("saldo apos investir: " + contaBancaria.getSaldo());
         contaBancariaRepository.save(contaBancaria);
         return contaBancaria.getSaldo();
     }
 
-    public void atualizarSaldoComPorcentagem(BigDecimal porcentagem, Long id, Cliente cliente) {
-
+    public void atualizarSaldoComPorcentagem(BigDecimal valorAumentado, Cliente cliente) {
         ContaBancaria contaBancaria = contaBancariaRepository.findByClienteId(cliente.getId()).get();
-        BigDecimal valorAumentado = contaBancaria.getSaldo().multiply(porcentagem);
         contaBancaria.setSaldo(contaBancaria.getSaldo().add(valorAumentado));
-        System.out.println("novo saldo com porcentagem: " + contaBancaria.getSaldo().setScale(2, RoundingMode.HALF_UP));
         contaBancariaRepository.save(contaBancaria);
-
     }
 }

@@ -9,7 +9,7 @@ public enum TipoDespesas {
     ALIMENTACAO("Alimentação"), CONTAS("Contas"), AGUA("Água"), LUZ("Luz"),
     SAUDE("Saúde"), TRANSPORTE("Transporte"), MORADIA("Moradia"),
     EDUCACAO("Educação"), LIVROS("Livros"), CULTURA("Cultura"), LAZER("Lazer"),
-    OUTROS("Outros"), INVESTIMENTO("Investimento"), IMPREVISTOS("Impreistos");
-
+    OUTROS("Outros"), INVESTIMENTO("Investimento"), IMPREVISTOS("Imprevistos"),
+    FERIADOS("Feriados"), FESTAS("Festas"), CASAMENTO("Casamento");
     private String descricao;
 }

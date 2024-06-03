@@ -39,7 +39,7 @@ public class ClienteService {
 
     public ModelAndView telaPrincipalLogado(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("cliente/tela-principal-nao-logado");
+        mv.setViewName("cliente/tela-principal-logado");
         return mv;
     }
 
@@ -47,13 +47,11 @@ public class ClienteService {
             BindingResult result) {
         ModelAndView mv = new ModelAndView();
         if (result.hasErrors()) {
-            System.out.println("existe erros aqui");
             mv.setViewName("/cliente/cadastro");
             return mv;
 
         }
         if (clienteRepository.existsByCpf(clienteDto.getCpf())) {
-            System.out.println("duplo cpf");
             mv.addObject("cpf", "O cpf ja existe no sistema!");
             mv.setViewName("/cliente/cadastro");
             return mv;

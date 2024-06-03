@@ -10,13 +10,13 @@ import com.gestao.financeira.projeto.services.ClienteService;
 
 @Controller
 @RequestMapping("/")
-public class ClienteNaoLogado {
+public class ClienteNaoLogadoController {
     
     @Autowired
     private ClienteService clienteService;
 
     @GetMapping("")
     public ModelAndView telaPrinciapalNaoLogado(){
-        return clienteService.telaPrincipalLogado();
+        return clienteService.telaPrinciapalNaoLogado();
     }
 }

@@ -33,7 +33,6 @@ public class DespesaService {
         for(Despesa despesa: despesas){
             totalDespesas = totalDespesas.add(despesa.getValorDespesa());
         }
-        System.out.println("A soma das suas despesas é de: " + totalDespesas);
         mv.addObject("totalDespesas", totalDespesas);
         return mv;
     }
