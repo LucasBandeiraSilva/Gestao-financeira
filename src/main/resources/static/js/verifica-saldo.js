@@ -22,7 +22,8 @@ function setSuccess(index) {
 }
 
 function validarValor(){
-    const valor = parseFloat(campos[0].value.replace(",", "."));
+    const valor = parseFloat(campos[0].value.replace(".", ""));
+    console.log("saldo convertido é: "+  valor)
 
     if(valor>= saldoConvertido){
         setError(0)

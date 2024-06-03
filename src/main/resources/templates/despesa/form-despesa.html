@@ -25,9 +25,9 @@
               method="post"
             >
               <fieldset class="form-group">
-                <legend class="h4">Adicionar Despesa</legend>
+                <legend aria-label="Adicionar Despesa" class="h4">Adicionar Despesa</legend>
 
-                <label class="form-label" for="nome"
+                <label class="form-label" for="nome" aria-hidden="true"
                   >Informe o título da despesa</label
                 >
                 <input
@@ -37,9 +37,11 @@
                   th:field="*{nome}"
                   required
                   placeholder="Ex: Conta de luz"
+                  aria-label="Título da despesa"
+                  aria-required="true"
                 />
                 <div class="form-group">
-                  <label class="form-label" for="valor"
+                  <label class="form-label" for="valor" aria-hidden="true"
                     >Forneça o valor da despesa
                   </label>
                   <input
@@ -48,9 +50,11 @@
                     th:field="*{valorDespesa}"
                     id="valor"
                     placeholder="100.00"
+                    aria-label="Valor da despesa"
+                    aria-required="true"
                   />
                 </div>
-                
+
                 <div class="form-group">
                   <label class="form-label" for="tipo"
                     >Selecione a categoria da sua despesa abaixo</label
@@ -59,6 +63,7 @@
                     class="form-select w-75 mx-auto"
                     th:field="*{tipoDespesa}"
                     id="tipoDespesa"
+                    aria-label="Selecione a categoria da despesa"
                   >
                     <option
                       th:each="tipoDespesa : ${tipoDespesa}"
@@ -73,6 +78,7 @@
                   <button
                     type="submit"
                     class="btn btn-success text-center mt-2"
+                    aria-label="Adicionar planejamento de despesa"
                   >
                     Adicionar Planejamento
                   </button>

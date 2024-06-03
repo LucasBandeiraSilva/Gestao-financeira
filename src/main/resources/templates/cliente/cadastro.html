@@ -25,7 +25,7 @@
           <div class="col-md-6">
             <p class="h4 mt-3">Cadastre-se em nossa loja!</p>
             <br />
-            <label for="nome" class="form-label">Nome:</label>
+            <label for="nome" class="form-label" aria-hidden="true">Nome:</label>
             <input
               type="text"
               th:field="*{nome}"
@@ -33,13 +33,14 @@
               class="form-control mb-3 required"
               oninput="nameValidation()"
               th:errorclass="is-invalid"
+              aria-label="Informe seu nome"
             />
             <span class="span-required"
               >O nome deve ser maior que 3 caracteres!</span
             >
             <span class="valid">O nome está no tamanho ideal!</span>
             <div class="invalid-feedback" th:errors="*{nome}"></div>
-            <label for="email" class="form-label">E-mail:</label>
+            <label for="email" class="form-label" aria-hidden="true">E-mail:</label>
             <input
               type="email"
               th:field="*{email}"
@@ -47,13 +48,12 @@
               class="form-control mb-3 required"
               th:errorclass="is-invalid"
               oninput="emailValidator()"
+              aria-label="Informe seu e-mail"
             />
-            <span class="span-required"
-              >O e-mail está inválido!</span
-            >
+            <span class="span-required">O e-mail está inválido!</span>
             <span class="valid"> O e-mail está válido!!</span>
             <div class="invalid-feedback" th:errors="*{email}"></div>
-            <label for="cpf" class="form-label">CPF:</label>
+            <label for="cpf" class="form-label" aria-hidden="true">CPF:</label>
             <input
               type="text"
               name="cpf"
@@ -62,11 +62,12 @@
               class="form-control mb-3 required"
               th:errorclass="is-invalid"
               oninput="cpfValidator()"
+              aria-label="Informe seu CPF"
             />
             <span class="span-required">O cpf está inválido!</span>
             <span class="valid">O cpf está válido!</span>
             <div class="invalid-feedback" th:errors="*{cpf}"></div>
-            <label for="senha" class="form-label">Senha:</label>
+            <label for="senha" class="form-label" aria-hidden="true">Senha:</label>
             <input
               type="password"
               name="senha"
@@ -75,13 +76,14 @@
               class="form-control mb-3 required"
               th:errorclass="is-invalid"
               oninput="passwordValidate()"
+              aria-label="Informe sua senha"
             />
             <span class="span-required"
               >A senha deve ter no minimo 6 caracteres</span
             >
             <span class="valid">A senha está no tamanho ideal!</span>
 
-            <label for="repetir_senha" class="form-label">
+            <label for="repetir_senha" class="form-label" aria-hidden="true">
               Repita a Senha:</label
             >
             <input
@@ -90,12 +92,19 @@
               id="repetir_senha"
               class="form-control mb-3 required"
               oninput="comparePassword()"
+              aria-label="Repita a senha"
             />
             <span class="span-required">Senhas devem ser iguais!</span>
             <span class="valid">As senhas estão iguais!</span>
 
             <div class="d-flex align-items-center justify-content-center mb-1">
-              <button type="submit" class="btn btn-success">Entrar</button>
+              <button
+                type="submit"
+                class="btn btn-success text-dark"
+                aria-label="Cadastrar-se"
+              >
+                Entrar
+              </button>
             </div>
             <div class="text-danger-emphasis" th:if="${cpf}">
               <p th:text="${cpf}"></p>

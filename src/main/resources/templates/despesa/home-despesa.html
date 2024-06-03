@@ -16,11 +16,14 @@
     <div class="row container-fluid">
       <div class="col-2 aside">
         <aside class="text-center mb-2 d-flex flex-column">
-          <p class="text-center h4">Minhas Despesas</p>
+          <p class="text-center h4" aria-label="Minhas Despesas">
+            Minhas Despesas
+          </p>
           <a
             th:href="@{/cliente/logado}"
             class="btn btn-primary mb-2"
             type="submit"
+            aria-label="Voltar para a página principal"
             >Voltar</a
           >
           <a
@@ -28,9 +31,14 @@
             target="_self"
             class="btn btn-primary mb-2"
             type="submit"
+            aria-label="Acessar a página de investimentos"
             >Investimentos</a
           >
-          <a th:href="@{/planejamento}" class="btn btn-primary" type="submit"
+          <a
+            th:href="@{/planejamento}"
+            class="btn btn-primary"
+            type="submit"
+            aria-label="Acessar a página de planejamentos"
             >Planejamentos</a
           >
         </aside>
@@ -41,13 +49,14 @@
             <div
               class="col d-flex flex-row justify-content-around align-content-center mt-1 ms-auto me-auto"
             >
-              <h4>Despesas</h4>
+              <h4 aria-label="Despesas">Despesas</h4>
 
               <a
                 class="btn btn-success"
                 th:href="@{/despesa/adicionar}"
                 target="_self"
                 rel="noopener noreferrer"
+                aria-label="Adicionar uma nova despesa"
                 >Adicionar Despesas</a
               >
             </div>
@@ -55,27 +64,54 @@
           <div class="row">
             <div class="col">
               <main class="container table-responsive">
-                <div th:if="${listaVazia}">
+                <div
+                  th:if="${listaVazia}"
+                  role="alert"
+                  aria-live="assertive"
+                  aria-atomic="true"
+                >
                   <h3>Nenhuma despesa encontrada!</h3>
                 </div>
                 <div th:unless="${listaVazia}">
-                  <table class="table table align-middle text-center">
+                  <table
+                    class="table table align-middle text-center"
+                    aria-label="Tabela de Despesas"
+                  >
                     <thead>
                       <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Valor</th>
-                        <th scope="col">Categoria de despesa</th>
-                        <th scope="col">Data de adição</th>
-                        <th scope="col">Ação</th>
+                        <th scope="col" aria-label="Nome da despesa">Nome</th>
+                        <th scope="col" aria-label="Valor da despesa em reais">
+                          Valor
+                        </th>
+                        <th scope="col" aria-label="Categoria da despesa">
+                          Categoria de despesa
+                        </th>
+                        <th scope="col" aria-label="Data de adição da despesa">
+                          Data de adição
+                        </th>
+                        <th scope="col" aria-label="Ações para a despesa">
+                          Ação
+                        </th>
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
                       <tr th:each="despesas : ${despesas}">
-                        <th scope="row" th:text="${despesas.nome}"></th>
-                        <td th:text="${despesas.valorDespesa}"></td>
-                        <td th:text="${despesas.TipoDespesa.descricao}"></td>
+                        <th
+                          scope="row"
+                          th:text="${despesas.nome}"
+                          aria-label="Nome da despesa"
+                        ></th>
+                        <td
+                          th:text="${despesas.valorDespesa}"
+                          aria-label="Valor da despesa"
+                        ></td>
+                        <td
+                          th:text="${despesas.TipoDespesa.descricao}"
+                          aria-label="Categoria da despesa"
+                        ></td>
                         <td
                           th:text="${#temporals.format(despesas.dataDespesaAdicionada, 'dd/MM/yyyy')}"
+                          aria-label="Data de adição da despesa"
                         ></td>
                         <td>
                           <a
@@ -83,6 +119,7 @@
                             th:href="@{/despesa/excluir/{id}(id=${despesas.id})}"
                             target="_self"
                             rel="noopener noreferrer"
+                            aria-label="Excluir despesa"
                             >Excluir despesa</a
                           >
                         </td>
@@ -90,8 +127,13 @@
                     </tbody>
                   </table>
                   <div class="d-flex flex-row">
-                    <h3>O total de suas despesas é de: R$ </h3>
-                    <H3 th:text="${totalDespesas}"></H3>
+                    <h3 aria-hidden="true">
+                      O total de suas despesas é de: R$
+                    </h3>
+                    <h3
+                      th:text="${totalDespesas}"
+                      aria-label="Total das despesas"
+                    ></h3>
                   </div>
                 </div>
               </main>

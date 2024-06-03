@@ -13,15 +13,30 @@
     <title>Fazer Investimento</title>
   </head>
   <body>
-    <div class="container ">
-      <main class="row row-cols-3">
+    <div class="container">
+      <main class="row row-cols-3" aria-label="Opções de Investimento">
         <div class="col" th:each="investimento : ${tiposInvestimentos}">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title" th:text="${investimento.titulo}">Investimento Nome</h5>
-                <h6 class="card-text mb-2" th:text="${investimento.descricao}">Descrição do Investimento</h6>
-                <a th:href="@{/investimento/novo/{investimento}(investimento=${investimento.nome})}" class="btn btn-primary" target="_self" rel="noopener noreferrer">Investir</a>
-              </div>
+          <div class="card" role="article" aria-label="Opção de investimento">
+            <div class="card-body">
+              <h5
+                class="card-title"
+                th:text="${investimento.titulo}"
+                aria-label="Título do investimento"
+              ></h5>
+              <h6
+                class="card-text mb-2"
+                th:text="${investimento.descricao}"
+                aria-label="Descrição do investimento"
+              ></h6>
+              <a
+                th:href="@{/investimento/novo/{investimento}(investimento=${investimento.nome})}"
+                class="btn btn-primary"
+                target="_self"
+                rel="noopener noreferrer"
+                aria-label="Investir"
+              >
+                Investir
+              </a>
             </div>
           </div>
         </div>

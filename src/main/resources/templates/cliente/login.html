@@ -24,9 +24,12 @@
   </head>
   <body>
     <main class="container">
-      <form action="/cliente/login" method="post" >
-        <div class="row  rounded rounded-5" >
-          <div class="col d-flex justify-content-center align-items-center flex-column rounded rounded-5" id="img-money">
+      <form action="/cliente/login" method="post">
+        <div class="row rounded rounded-5">
+          <div
+            class="col d-flex justify-content-center align-items-center flex-column rounded rounded-5"
+            id="img-money"
+          >
             <img
               src="/imgs/money-bag.png"
               alt="money"
@@ -35,10 +38,13 @@
               height="230px"
               class=""
             />
-            <p class="h3 text-light">Faça seu login!</p>
+            <p class="h3 text-dark">Faça seu login!</p>
           </div>
-          
-          <div id="form" class="col d-flex justify-content-center align-items-center flex-column rounded rounded-3" >
+
+          <div
+            id="form"
+            class="col d-flex justify-content-center align-items-center flex-column rounded rounded-3"
+          >
             <label for="email" class="form-label">email</label>
             <input
               type="text"
@@ -47,7 +53,7 @@
               class="form-control mb-3 rounded rounded-3"
               placeholder="Digite o seu e-mail"
             />
-            <label for="nome" class="form-label">Senha</label>
+            <label for="senha" class="form-label">Senha</label>
             <input
               type="password"
               name="senha"
@@ -55,11 +61,34 @@
               class="form-control mb-3 rounded rounded-3"
               placeholder="Digite a senha"
             />
-            <div class="d-flex align-items-center justify-content-center flex-column" id="option">
-              <button type="submit" class="btn mb-2">Entrar</button>
-              <p class="h4" id="link"><a target="_blank" th:href="@{/cliente/esqueci/senha}">Esqueceu a senha?</a></p>
-              <div class="d-flex align-items-center justify-content-center flex-row">
-                <h5>Não tem uma conta? <a th:href="@{/cliente/cadastro}" target="_self" rel="noopener noreferrer">Crie uma conta agora mesmo!</a></h5>
+            <div
+              class="d-flex align-items-center justify-content-center flex-column"
+              id="option"
+            >
+              <button
+                type="submit"
+                class="btn mb-2 text-dark"
+                aria-label="Adicionar planejamento de despesa"
+              >
+                Entrar
+              </button>
+              <p class="h4" id="link">
+                <a target="_blank" th:href="@{/cliente/esqueci/senha}"
+                  >Esqueceu a senha?</a
+                >
+              </p>
+              <div
+                class="d-flex align-items-center justify-content-center flex-row"
+              >
+                <h5>
+                  Não tem uma conta?
+                  <a
+                    th:href="@{/cliente/cadastro}"
+                    target="_self"
+                    rel="noopener noreferrer"
+                    >Crie uma conta agora mesmo!</a
+                  >
+                </h5>
               </div>
             </div>
           </div>

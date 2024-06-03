@@ -16,74 +16,121 @@
   <body>
     <header>
       <div class="justify-content-between align-items-center d-flex">
-        <div class="d-flex flex-row">
-          <h2 class="me-2">Olá</h2>
-          <h2 th:text="${nomeCliente}"></h2>
+        <img
+          src="/imgs/logo.png"
+          alt="logo do money-planner"
+          aria
+          srcset=""
+          style="height: 100px; width: 100px"
+        />
+        <div class="d-flex flex-column text-center">
+          <h1>Money-Planner</h1>
+          <h3>Descubra o Segredo para um Futuro Financeiro Tranquilo</h3>
         </div>
-
         <div>
           <a
             class="btn btn-primary me-2"
             th:href="@{/cliente/logout}"
             target="_self"
             rel="noopener noreferrer"
+            aria-label="Sair da conta"
             >Logout</a
           >
         </div>
       </div>
     </header>
-    <main class="rounded">
+    <main class="rounded" aria-label="Seções principais do aplicativo">
       <div class="container">
         <div
           class="row-cols-1 d-flex flex-row justify-content-around row-cols-md-3"
+          aria-label="Opções principais do aplicativo"
         >
           <div class="col">
-            <div class="card me-2">
+            <div
+              class="card me-2"
+              role="article"
+              aria-label="Seção de Investimentos"
+            >
               <div class="card-body">
-                <h5 class="card-title">Investimentos</h5>
-                <h6 class="card-subtitle mb-2 text-muted">
+                <h5 class="card-title" aria-label="Investimentos">
+                  Investimentos
+                </h5>
+                <h6
+                  class="card-subtitle mb-2 text-muted"
+                  aria-label="Faça investimentos eficientes!"
+                >
                   Faça investimentos eficientes!
                 </h6>
-                <p class="card-text">
+                <p
+                  class="card-text"
+                  aria-label="Descrição da seção de investimentos"
+                >
                   Desperte o potencial do seu dinheiro. <br />
                   Aqui, ele encontra o ambiente ideal para crescer e gerar
                   resultados excepcionais
                 </p>
-                <a class="btn btn-success" th:href="@{/investimento}"
-                  >Ver Investimentos</a
+                <a
+                  class="btn btn-success"
+                  th:href="@{/investimento}"
+                  aria-label="Acessar a seção de investimentos"
+                >
+                  Ver Investimentos</a
                 >
               </div>
             </div>
           </div>
-          <div class="card me-2">
+          <div class="card me-2" role="article" aria-label="Seção de Despesas">
             <div class="card-body">
-              <h5 class="card-title">Despesas</h5>
-              <h6 class="card-subtitle mb-2 text-muted">
+              <h5 class="card-title" aria-label="Despesas">Despesas</h5>
+              <h6
+                class="card-subtitle mb-2 text-muted"
+                aria-label="Acompanhe suas despesas facilmente"
+              >
                 Acompanhe suas despesas facilmente
               </h6>
-              <p class="card-text">
+              <p class="card-text" aria-label="Descrição da seção de despesas">
                 Invista em você, invista em seu futuro. <br />
                 Aqui, você tem as ferramentas para controlar seu dinheiro, e
                 construir um patrimônio sólido
               </p>
-              <a class="btn btn-success" th:href="@{/despesa}"
-                >monitorar meu dinheiro</a
+              <a
+                class="btn btn-success"
+                th:href="@{/despesa}"
+                aria-label="Acessar a seção de despesas"
+              >
+                monitorar meu dinheiro</a
               >
             </div>
           </div>
-          <div class="card">
+          <div
+            class="card"
+            role="article"
+            aria-label="Seção de Planejamento Financeiro"
+          >
             <div class="card-body">
-              <h5 class="card-title">Planejamento financeiro</h5>
-              <h6 class="card-subtitle mb-2 text-muted">
+              <h5 class="card-title" aria-label="Planejamento Financeiro">
+                Planejamento financeiro
+              </h5>
+              <h6
+                class="card-subtitle mb-2 text-muted"
+                aria-label="Crie metas e alcance o sucesso!"
+              >
                 Seja a melhor versão de si mesmo: Crie metas e alcance o
                 sucesso!
               </h6>
-              <p class="card-text">
+              <p
+                class="card-text"
+                aria-label="Descrição da seção de planejamento financeiro"
+              >
                 Defina metas e trace um plano para alcançar seus objetivos e se
                 tornar a melhor versão de si mesmo
               </p>
-              <a class="btn btn-success mt-4" th:href="@{/planejamento}"
-                >Definir Planos</a
+              <a
+                class="btn btn-success mt-4"
+                th:href="@{/planejamento}"
+                aria-label="Acessar a seção de planejamento financeiro"
+              >
+                Definir Planos</a
               >
             </div>
           </div>

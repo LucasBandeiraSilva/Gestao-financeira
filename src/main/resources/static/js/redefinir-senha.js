@@ -5,8 +5,10 @@ const validFeedback = document.querySelectorAll(".valid");
 
 function setError(index) {
   campos[index].classList.add("is-invalid");
-  spans[index].classList.add("invalid-feedback");
   spans[index].style.display = "block";
+  spans[index].classList.add("invalid-feedback");
+  campos[index].classList.remove("is-valid");
+  validFeedback[index].style.display = "none";
 }
 function removeError(index) {
   campos[index].classList.remove("is-invalid");

@@ -16,16 +16,28 @@
     <div class="row container-fluid">
       <div class="col-2 aside">
         <aside class="text-center mb-2 d-flex flex-column">
-          <p class="text-center h4">Meus Investimentos</p>
+          <p class="text-center h4" aria-label="Meus Investimentos">
+            Meus Investimentos
+          </p>
           <a
             th:href="@{/cliente/logado}"
             class="btn btn-primary mb-2"
             type="submit"
+            aria-label="Voltar para a página principal"
             >Voltar</a
           >
-          <a th:href="@{/despesa}" class="btn btn-primary mb-2">Despesas</a>
-          <a th:href="@{/planejamento}" class="btn btn-primary"
-            >Planejamento financeiro</a
+          <a
+            th:href="@{/despesa}"
+            class="btn btn-primary mb-2"
+            aria-label="Acessar a página de despesas"
+            >Despesas</a
+          >
+          <a
+            th:href="@{/planejamento}"
+            class="btn btn-primary"
+            aria-label="Acessar a página de planejamento financeiro"
+          >
+            Planejamento financeiro</a
           >
         </aside>
       </div>
@@ -35,16 +47,17 @@
             <div
               class="col d-flex flex-row justify-content-between align-content-center mt-1 ms-auto me-auto"
             >
-              <h4>Investimentos</h4>
+              <h4 aria-label="Investimentos">Investimentos</h4>
               <div class="d-flex flex-row">
-                <h3 class="me-2">Saldo em conta: R$</h3>
-                <h3 th:text="${saldo}"></h3>
+                <h3 class="me-2" aria-hidden="true">Saldo em conta: R$</h3>
+                <h3 th:text="${saldo}" aria-label="Saldo em conta"></h3>
               </div>
               <a
                 class="btn btn-success"
                 th:href="@{/investimento/novo}"
                 target="_self"
                 rel="noopener noreferrer"
+                aria-label="Fazer um novo investimento"
                 >Fazer um investimento</a
               >
             </div>
@@ -52,17 +65,33 @@
           <div class="row">
             <div class="col">
               <main class="container">
-                <div th:if="${listaVazia}">
+                <div
+                  th:if="${listaVazia}"
+                  role="alert"
+                  aria-live="assertive"
+                  aria-atomic="true"
+                >
                   <h3 class="text-center">Nenhum investimento cadastrado</h3>
                 </div>
                 <div th:unless="${listaVazia}">
-                  <table class="table table align-middle text-center">
+                  <table
+                    class="table table align-middle text-center"
+                    aria-label="Tabela de Investimentos"
+                  >
                     <thead>
                       <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Valor em R$</th>
-                        <th scope="col">Data Investimento</th>
-                        <th scope="col">Ação</th>
+                        <th scope="col" aria-label="Nome do investimento">
+                          Nome
+                        </th>
+                        <th scope="col" aria-label="Valor investido em reais">
+                          Valor em R$
+                        </th>
+                        <th scope="col" aria-label="Data do investimento">
+                          Data Investimento
+                        </th>
+                        <th scope="col" aria-label="Ações para o investimento">
+                          Ação
+                        </th>
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -70,15 +99,23 @@
                         <th
                           scope="row"
                           th:text="${investimentos.tipoInvestimento.nome}"
+                          aria-label="Nome do investimento"
                         ></th>
-                        <td th:text="${investimentos.valorInicial}"></td>
-                        <td th:text="${investimentos.dataInvestimento}"></td>
+                        <td
+                          th:text="${investimentos.valorInicial}"
+                          aria-label="Valor investido"
+                        ></td>
+                        <td
+                          th:text="${investimentos.dataInvestimento}"
+                          aria-label="Data do investimento"
+                        ></td>
                         <td>
                           <a
                             class="btn btn-primary"
                             th:href="@{/investimento/resgatar/{id}(id=${investimentos.id})}"
                             target="_self"
                             rel="noopener noreferrer"
+                            aria-label="Resgatar investimento"
                             >Resgatar Investimento</a
                           >
                         </td>

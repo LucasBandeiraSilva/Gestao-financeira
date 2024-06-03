@@ -16,11 +16,11 @@
     <main class="container">
         <form action="/cliente/email"   method="post">
             <div class="border mb-5"><h4>Procurar e-mail associado</h4></div>
-            <label class="form-label" for="email">Informe o e-mail cadastrado</label>
-            <input class="form-control w-50" type="email" name="email" id="email" required placeholder="Informe seu e-mail aqui">
-            <button class="btn btn-success mt-4" type="submit">Procurar</button>
+            <label class="form-label" for="email"aria-hidden="true" >Informe o e-mail cadastrado</label>
+            <input class="form-control w-50" aria-label="Informe o seu e-mail aqui" type="email" name="email" id="email" required placeholder="Informe seu e-mail aqui">
+            <button class="btn btn-success mt-4" aria-label="Procurar e-mail" type="submit">Procurar</button>
         </form>
-        <div class="alert alert-danger ms-3 w-50" th:if="${erro}">
+        <div class="alert alert-danger ms-3 w-50"  th:if="${erro}">
             <p th:text="${erro}"></p>
           </div>
     </main>

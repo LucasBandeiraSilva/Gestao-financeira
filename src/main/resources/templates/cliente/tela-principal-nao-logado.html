@@ -16,13 +16,21 @@
   <body>
     <header>
       <div class="justify-content-between align-items-center d-flex">
-        <div class="d-flex flex-row">
-          <h2 class="me-2">Olá! Seja Bem-Vindo(a)!</h2>
-          <h2 th:text="${nomeCliente}"></h2>
+        <img
+          src="/imgs/logo.png"
+          alt="logo do money-planner"
+          aria
+          srcset=""
+          style="height: 100px; width: 100px"
+          
+        />
+        <div class="d-flex flex-column text-center">
+          <h1>Money-Planner</h1>
+          <h3>Descubra o Segredo para um Futuro Financeiro Tranquilo</h3>
         </div>
         <div>
           <a
-            class="btn btn-primary"
+            class="btn btn-primary me-2"
             th:href="@{/cliente/login}"
             target="_self"
             rel="noopener noreferrer"

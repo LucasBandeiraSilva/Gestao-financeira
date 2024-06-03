@@ -16,11 +16,14 @@
     <div class="row container-fluid">
       <div class="col-2 aside">
         <aside class="text-center mb-2 d-flex flex-column">
-          <p class="text-center h4">Meus Planejamentos</p>
+          <p class="text-center h4" aria-label="Meus Planejamentos">
+            Meus Planejamentos
+          </p>
           <a
             th:href="@{/cliente/logado}"
             class="btn btn-primary mb-2"
             type="submit"
+            aria-label="Voltar para a página principal"
             >Voltar</a
           >
           <a
@@ -28,9 +31,14 @@
             target="_self"
             class="btn btn-primary mb-2"
             type="submit"
+            aria-label="Acessar a página de investimentos"
             >Investimentos</a
           >
-          <a th:href="@{/despesa}" class="btn btn-primary" type="submit"
+          <a
+            th:href="@{/despesa}"
+            class="btn btn-primary"
+            type="submit"
+            aria-label="Acessar a página de despesas"
             >Despesas</a
           >
         </aside>
@@ -41,13 +49,14 @@
             <div
               class="col d-flex flex-row justify-content-around align-content-center mt-1 ms-auto me-auto"
             >
-              <h4>Planejamentos</h4>
+              <h4 aria-label="Planejamentos">Planejamentos</h4>
 
               <a
                 class="btn btn-success"
                 th:href="@{/planejamento/novo}"
                 target="_self"
                 rel="noopener noreferrer"
+                aria-label="Adicionar um novo planejamento"
                 >Adicionar um planejamento</a
               >
             </div>
@@ -55,33 +64,79 @@
           <div class="row">
             <div class="col">
               <main class="container">
-                <div th:if="${listaVazia}">
+                <div
+                  th:if="${listaVazia}"
+                  role="alert"
+                  aria-live="assertive"
+                  aria-atomic="true"
+                >
                   <h3 class="text-center">Nenhum planejamento cadastrado</h3>
                 </div>
                 <div th:unless="${listaVazia}">
-                  <table class="table table align-middle text-center">
+                  <table
+                    class="table table align-middle text-center"
+                    aria-label="Tabela de Planejamentos"
+                  >
                     <thead>
                       <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Categoria do planejamento</th>
-                        <th scope="col">Valor em R$</th>
-                        <th scope="col">Data Inicio</th>
-                        <th scope="col">Data fim</th>
-                        <th scope="col">Ação</th>
+                        <th scope="col" aria-label="Nome do planejamento">
+                          Nome
+                        </th>
+                        <th scope="col" aria-label="Descrição do planejamento">
+                          Descrição
+                        </th>
+                        <th scope="col" aria-label="Categoria do planejamento">
+                          Categoria do planejamento
+                        </th>
+                        <th
+                          scope="col"
+                          aria-label="Valor do planejamento em reais"
+                        >
+                          Valor em R$
+                        </th>
+                        <th
+                          scope="col"
+                          aria-label="Data de início do planejamento"
+                        >
+                          Data Inicio
+                        </th>
+                        <th
+                          scope="col"
+                          aria-label="Data de término do planejamento"
+                        >
+                          Data fim
+                        </th>
+                        <th scope="col" aria-label="Ações para o planejamento">
+                          Ação
+                        </th>
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
                       <tr th:each="planejamentos : ${planejamentos}">
-                        <th scope="row" th:text="${planejamentos.titulo}"></th>
-                        <td th:text="${planejamentos.descricao}"></td>
+                        <th
+                          scope="row"
+                          th:text="${planejamentos.titulo}"
+                          aria-label="Nome do planejamento"
+                        ></th>
+                        <td
+                          th:text="${planejamentos.descricao}"
+                          aria-label="Descrição do planejamento"
+                        ></td>
                         <td
                           th:text="${planejamentos.tipoPlanejamento.nome}"
+                          aria-label="Categoria do planejamento"
                         ></td>
-                        <td th:text="${planejamentos.valor}"></td>
-                        <td th:text="${planejamentos.dataInicio}"></td>
+                        <td
+                          th:text="${planejamentos.valor}"
+                          aria-label="Valor do planejamento"
+                        ></td>
+                        <td
+                          th:text="${planejamentos.dataInicio}"
+                          aria-label="Data de início do planejamento"
+                        ></td>
                         <td
                           th:text="${#temporals.format(planejamentos.dataTermino, 'dd/MM/yyyy')}"
+                          aria-label="Data de término do planejamento"
                         ></td>
                         <td>
                           <a
@@ -89,6 +144,7 @@
                             th:href="@{/planejamento/concluir/{id}(id=${planejamentos.id})}"
                             target="_self"
                             rel="noopener noreferrer"
+                            aria-label="Concluir planejamento"
                             >Concluir planejamento</a
                           >
                         </td>
