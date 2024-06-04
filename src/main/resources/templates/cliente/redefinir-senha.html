@@ -16,7 +16,7 @@
   <body>
     <main class="container">
       <form action="/cliente/redefinir/senha" method="post" id="form">
-        <label class="form-label" for="senha">Digite sua nova senha</label>
+        <label class="form-label" for="senha" aria-hidden="true">Digite sua nova senha</label>
         <input
           class="form-control w-50 required"
           type="password"
@@ -25,6 +25,8 @@
           required
           placeholder="Informe sua senha nova aqui"
           oninput="validatePassword()"
+          role="button"
+          aria-required="true"
           aria-label="Informe sua senha nova aqui"
         />
         <span class="span-required text-center"
@@ -41,6 +43,7 @@
           placeholder="Digite novamente sua senha nova aqui"
           oninput="comparePassword()"
           aria-label="Digite novamente sua senha nova aqui"
+          aria-required="true"
         />
         <div class="text-center">
           <span class="span-required text-center"
@@ -49,9 +52,14 @@
           <span class="valid text-center">As senhas estão iguais</span>
         </div>
 
-        <button class="btn btn-success mt-4" 
-        aria-label="Alterar senha"
-        type="submit">Alterar senha</button>
+        <button
+          class="btn btn-success mt-4"
+          aria-label="Alterar senha"
+          role="button"
+          type="submit"
+        >
+          Alterar senha
+        </button>
       </form>
     </main>
     <script src="/js/redefinir-senha.js"></script>

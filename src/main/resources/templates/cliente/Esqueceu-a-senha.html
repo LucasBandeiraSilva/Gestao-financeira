@@ -1,28 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/Esqueci-senha.css">
+    <link rel="stylesheet" href="/Esqueci-senha.css" />
     <title>Recuperar senha</title>
-</head>
-<body>
+  </head>
+  <body>
     <main class="container">
-        <form action="/cliente/email"   method="post">
-            <div class="border mb-5"><h4>Procurar e-mail associado</h4></div>
-            <label class="form-label" for="email"aria-hidden="true" >Informe o e-mail cadastrado</label>
-            <input class="form-control w-50" aria-label="Informe o seu e-mail aqui" type="email" name="email" id="email" required placeholder="Informe seu e-mail aqui">
-            <button class="btn btn-success mt-4" aria-label="Procurar e-mail" type="submit">Procurar</button>
-        </form>
-        <div class="alert alert-danger ms-3 w-50"  th:if="${erro}">
-            <p th:text="${erro}"></p>
-          </div>
+      <form action="/cliente/email" method="post">
+        <div class="border mb-5"><h4>Procurar e-mail associado</h4></div>
+        <label class="form-label" for="email" aria-hidden="true"
+          >Informe o e-mail cadastrado</label
+        >
+        <input
+          class="form-control w-50"
+          aria-label="Informe o seu e-mail aqui"
+          type="email"
+          name="email"
+          id="email"
+          aria-required="true"
+          required
+          placeholder="Informe seu e-mail aqui"
+        />
+        <button
+          class="btn btn-success mt-4"
+          role="button"
+          aria-label="Procurar e-mail"
+          type="submit"
+        >
+          Procurar
+        </button>
+      </form>
+      <div class="alert alert-danger ms-3 w-50" th:if="${erro}">
+        <p th:text="${erro}"></p>
+      </div>
     </main>
-</body>
+  </body>
 </html>

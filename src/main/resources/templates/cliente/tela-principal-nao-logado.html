@@ -22,7 +22,6 @@
           aria
           srcset=""
           style="height: 100px; width: 100px"
-          
         />
         <div class="d-flex flex-column text-center">
           <h1>Money-Planner</h1>
@@ -33,6 +32,8 @@
             class="btn btn-primary me-2"
             th:href="@{/cliente/login}"
             target="_self"
+            role="button"
+            aria-label="Fazer Login"
             rel="noopener noreferrer"
             >Login</a
           >
@@ -56,7 +57,11 @@
                   Aqui, ele encontra o ambiente ideal para crescer e gerar
                   resultados excepcionais
                 </p>
-                <a class="btn btn-success" th:href="@{/cliente/login}"
+                <a
+                  class="btn btn-success"
+                  th:href="@{/cliente/login}"
+                  role="button"
+                  aria-label="Ver investimentos"
                   >Ver Investimentos</a
                 >
               </div>
@@ -73,8 +78,12 @@
                 Aqui, você tem as ferramentas para controlar seu dinheiro, e
                 construir um patrimônio sólido
               </p>
-              <a class="btn btn-success" th:href="@{/cliente/login}"
-                >monitorar meu dinheiro</a
+              <a
+                class="btn btn-success"
+                th:href="@{/cliente/login}"
+                role="button"
+                aria-label="monitorar dinheiro"
+                >Monitorar meu dinheiro</a
               >
             </div>
           </div>
@@ -89,7 +98,11 @@
                 Defina metas e trace um plano para alcançar seus objetivos e se
                 tornar a melhor versão de si mesmo
               </p>
-              <a class="btn btn-success mt-4" th:href="@{/cliente/login}"
+              <a
+                class="btn btn-success mt-4"
+                th:href="@{/cliente/login}"
+                role="button"
+                aria-label="definir planos"
                 >Definir Planos</a
               >
             </div>

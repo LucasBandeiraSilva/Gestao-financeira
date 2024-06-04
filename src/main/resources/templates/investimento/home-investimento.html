@@ -23,18 +23,21 @@
             th:href="@{/cliente/logado}"
             class="btn btn-primary mb-2"
             type="submit"
+            role="button"
             aria-label="Voltar para a página principal"
             >Voltar</a
           >
           <a
             th:href="@{/despesa}"
             class="btn btn-primary mb-2"
+            role="button"
             aria-label="Acessar a página de despesas"
             >Despesas</a
           >
           <a
             th:href="@{/planejamento}"
             class="btn btn-primary"
+            role="button"
             aria-label="Acessar a página de planejamento financeiro"
           >
             Planejamento financeiro</a
@@ -57,6 +60,7 @@
                 th:href="@{/investimento/novo}"
                 target="_self"
                 rel="noopener noreferrer"
+                role="button"
                 aria-label="Fazer um novo investimento"
                 >Fazer um investimento</a
               >
@@ -115,6 +119,7 @@
                             th:href="@{/investimento/resgatar/{id}(id=${investimentos.id})}"
                             target="_self"
                             rel="noopener noreferrer"
+                            role="button"
                             aria-label="Resgatar investimento"
                             >Resgatar Investimento</a
                           >

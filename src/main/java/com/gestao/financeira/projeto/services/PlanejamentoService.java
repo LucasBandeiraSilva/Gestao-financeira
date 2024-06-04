@@ -54,6 +54,7 @@ public class PlanejamentoService {
         planejamento.setCliente(cliente);
         planejamento.setDataTermino(planejamentoDto.getDataTermino());
         BeanUtils.copyProperties(planejamentoDto, planejamento);
+        planejamento.setStatus(true);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         planejamento.setDataInicio(LocalDate.now().format(formatter));
         planejamentoRepository.save(planejamento);
