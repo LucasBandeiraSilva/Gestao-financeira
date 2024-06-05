@@ -27,7 +27,7 @@ function removeError(index) {
 }
 
 function nameValidation() {
-  if (campos[0].value.length < 3) {
+  if (campos[0].value.length <= 3) {
     setError(0);
     isInValidName = true;
   } else {
